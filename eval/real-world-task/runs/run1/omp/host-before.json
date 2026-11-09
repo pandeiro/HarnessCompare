@@ -1,0 +1,9 @@
+{
+  "docker": [],
+  "dockerError": null,
+  "onlycli": "",
+  "goBin": [
+    "hey"
+  ],
+  "goBinError": null
+}

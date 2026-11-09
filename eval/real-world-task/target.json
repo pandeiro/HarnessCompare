@@ -1,0 +1,10 @@
+{
+  "name": "onlycli",
+  "version": "0.2.0",
+  "repo": "https://github.com/onlycli/onlycli",
+  "release": "https://github.com/onlycli/onlycli/releases/tag/v0.2.0",
+  "released": "2026-03-27",
+  "asset": "https://github.com/onlycli/onlycli/releases/download/v0.2.0/onlycli_0.2.0_linux_arm64.tar.gz",
+  "checksum": "926cb2293b3d7a7388031f4d13a6a0c1c1a853851004945f0512950e0575b130",
+  "expected_smoke": "{\"id\":\"42\",\"message\":\"ok\"}"
+}

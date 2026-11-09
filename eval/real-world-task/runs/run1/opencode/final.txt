@@ -1,0 +1,26 @@
+Done. Container `onlycli-demo` removed; `openapi.yaml` and `server.go` untouched.
+
+**Install method**
+- Single ephemeral `golang:1.24-bookworm` (linux/arm64) container.
+- Downloaded the upstream v0.2.0 linux/arm64 release tarball, verified it with `checksums.txt` (`sha256sum -c`), extracted, and installed to `/usr/local/bin/onlycli`.
+- `onlycli version` confirmed `0.2.0` (commit `84217179091d...`, built `2026-03-27`).
+
+**Execution path**
+- `onlycli generate --spec openapi.yaml --name demo-cli --out ./demo-cli` → 1 group (`api`), 1 command (`get-echo`).
+- `cd demo-cli && go mod tidy && go build -o demo-cli .`
+- `go run server.go` in `/work`, served on `127.0.0.1:18080`.
+- Smoke: `cd demo-cli && ./demo-cli api get-echo --id 42 --format json`
+
+**Smoke output**
+```json
+{"id":"42","message":"ok"}
+```
+
+**Artifacts**
+- `out/demo-cli/` (generated project + built `demo-cli` binary)
+- `out/result.json` (all required fields)
+
+**Friction**
+- `bash -lc` in the Go image resets PATH and hides `/usr/local/go/bin`; used `bash -c` instead.
+- The spec has no tags, so the command is grouped under `api`; `operationId: getEcho` becomes `get-echo`.
+- Generated CLI defaulted to bearer auth (auto-detected) but the mock server needs no token, so it worked unauthenticated.

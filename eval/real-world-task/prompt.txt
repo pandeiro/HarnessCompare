@@ -1,0 +1,18 @@
+You are working in a fresh workspace. The target is OnlyCLI v0.2.0, a Go CLI generator released 2026-03-27:
+
+https://github.com/onlycli/onlycli
+
+Install and exercise it inside a single ephemeral Docker container. Do not install or run the target on the host.
+
+Inside the container:
+1. Install exactly v0.2.0 from the upstream release.
+2. Generate a CLI project from `openapi.yaml` (use project name `demo-cli`).
+3. Build the generated CLI.
+4. Start `server.go` on 127.0.0.1:18080 in the same container.
+5. Invoke the generated operation for id `42` and request JSON output.
+
+Then copy the generated project and built binary into `out/` in this workspace, and write `out/result.json` with exactly these fields:
+
+{"target":"onlycli","version":"0.2.0","install_command":"...","generate_command":"...","build_command":"...","smoke_command":"...","smoke_output":"..."}
+
+Remove the container when done. Do not modify `openapi.yaml` or `server.go`. Reply with a concise report covering the install method, execution path, smoke output, and friction.

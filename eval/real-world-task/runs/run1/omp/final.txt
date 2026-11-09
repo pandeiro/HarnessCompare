@@ -1,0 +1,22 @@
+Done. Container removed; artifacts in `out/`.
+
+**Install** — Upstream release tarball `onlycli_0.2.0_linux_arm64.tar.gz`, SHA-256 verified against release `checksums.txt` (`926cb229…b130`), binary installed to `/usr/local/bin/onlycli`. Reported release version: `onlycli version 0.2.0 (commit: 8421717…)`. Go 1.24.13 from `golang:1.24-bookworm` (linux/arm64) supplied the toolchain for generated code.
+
+**Execution path**
+1. `onlycli generate --spec ./openapi.yaml --name demo-cli --out ./demo-cli` → 1 group, 1 command; generator reported `Auth: bearer (env: DEMO_CLI_TOKEN)`.
+2. `go mod tidy && go build -o demo-cli .` → 12 MB ELF aarch64 binary.
+3. `server.go` built and started on `127.0.0.1:18080`; `curl /echo/ping` confirmed `{"id":"ping","message":"ok"}`.
+4. Smoke: `./demo-cli api get-echo --id 42 --format json` → exit 0.
+
+**Smoke output**
+```json
+{"id":"42","message":"ok"}
+```
+
+**Friction**
+- Release asset names in `checksums.txt` don't match a renamed local tarball, so `sha256sum -c checksums.txt` reports "no file was verified"; verification required mapping the line to the saved filename (or downloading under the canonical name).
+- OnlyCLI's README implies commands are grouped by tag; this untagged spec collapsed everything under a generic `api` group, and `operationId: getEcho` became `get-echo` — must inspect `--help` to discover the real command path.
+- Generated CLI defaults to bearer auth via `DEMO_CLI_TOKEN`; unneeded by this server and harmless, but adds an env expectation the spec doesn't state.
+- `go` is absent from non-login `docker exec` PATH in the Golang image; needed explicit `/usr/local/go/bin`. `go mod tidy` also requires network for generated deps.
+
+Artifacts: `out/demo-cli/` (sources + built `demo-cli` binary), `out/result.json` (exact requested fields, JSON-validated).

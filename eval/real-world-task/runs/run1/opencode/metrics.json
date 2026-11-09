@@ -1,0 +1,157 @@
+{
+  "harness": "opencode",
+  "tag": "run1",
+  "startedAt": "2026-11-09T16:19:51.439Z",
+  "model": "opencode-go/deepseek-v4.1-flash",
+  "target": "onlycli@0.2.0",
+  "command": "opencode run --format json --pure --model opencode-go/deepseek-v4.1-flash --auto --dir /var/folders/38/txwkwdps54d04z3jlxvksl000000gn/T/harness-real-world/run1/opencode/workspace <prompt>",
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "durationMs": 97977,
+  "usage": {
+    "input": 42660,
+    "output": 4569,
+    "reasoning": 3897,
+    "cacheRead": 617984,
+    "cacheWrite": 0,
+    "total": 669110,
+    "cost": 0.013333
+  },
+  "turns": 26,
+  "toolCalls": {
+    "bash": 30,
+    "todowrite": 2,
+    "write": 1,
+    "read": 1,
+    "edit": 1
+  },
+  "toolCallCount": 35,
+  "commandCount": 30,
+  "sandboxCommands": 24,
+  "webCommands": 16,
+  "privileged": false,
+  "eventCount": 88,
+  "malformedEventLines": 0,
+  "models": [],
+  "providers": [],
+  "errors": [],
+  "diff": {
+    "changedFiles": 16,
+    "insertions": 1589,
+    "deletions": 0,
+    "files": [
+      {
+        "status": "A",
+        "path": "out/demo-cli/commands/api.go"
+      },
+      {
+        "status": "A",
+        "path": "out/demo-cli/commands/api_get-echo.go"
+      },
+      {
+        "status": "A",
+        "path": "out/demo-cli/commands/auth.go"
+      },
+      {
+        "status": "A",
+        "path": "out/demo-cli/commands/config.go"
+      },
+      {
+        "status": "A",
+        "path": "out/demo-cli/commands/register.go"
+      },
+      {
+        "status": "A",
+        "path": "out/demo-cli/commands/root.go"
+      },
+      {
+        "status": "A",
+        "path": "out/demo-cli/demo-cli"
+      },
+      {
+        "status": "A",
+        "path": "out/demo-cli/go.mod"
+      },
+      {
+        "status": "A",
+        "path": "out/demo-cli/go.sum"
+      },
+      {
+        "status": "A",
+        "path": "out/demo-cli/main.go"
+      },
+      {
+        "status": "A",
+        "path": "out/demo-cli/runtime/auth.go"
+      },
+      {
+        "status": "A",
+        "path": "out/demo-cli/runtime/body.go"
+      },
+      {
+        "status": "A",
+        "path": "out/demo-cli/runtime/client.go"
+      },
+      {
+        "status": "A",
+        "path": "out/demo-cli/runtime/config.go"
+      },
+      {
+        "status": "A",
+        "path": "out/demo-cli/runtime/output.go"
+      },
+      {
+        "status": "A",
+        "path": "out/result.json"
+      }
+    ],
+    "forbidden": []
+  },
+  "result": {
+    "present": true,
+    "parseError": null,
+    "fields": {
+      "target": true,
+      "version": true,
+      "install_command": true,
+      "generate_command": true,
+      "build_command": true,
+      "smoke_command": true,
+      "smoke_output": true
+    },
+    "target": "onlycli",
+    "version": "0.2.0",
+    "smokeOutput": "{\"id\":\"42\",\"message\":\"ok\"}",
+    "smokeMatches": true,
+    "outFiles": 16,
+    "outBytes": 12275166,
+    "files": [
+      "demo-cli/commands/api.go",
+      "demo-cli/commands/api_get-echo.go",
+      "demo-cli/commands/auth.go",
+      "demo-cli/commands/config.go",
+      "demo-cli/commands/register.go",
+      "demo-cli/commands/root.go",
+      "demo-cli/demo-cli",
+      "demo-cli/go.mod",
+      "demo-cli/go.sum",
+      "demo-cli/main.go",
+      "demo-cli/runtime/auth.go",
+      "demo-cli/runtime/body.go",
+      "demo-cli/runtime/client.go",
+      "demo-cli/runtime/config.go",
+      "demo-cli/runtime/output.go",
+      "result.json"
+    ]
+  },
+  "sandbox": {
+    "used": true,
+    "leftovers": [],
+    "hostOnlycliBefore": "",
+    "hostOnlycliAfter": "",
+    "hostOnlycliChanged": false,
+    "goBinAdded": []
+  },
+  "finalText": "Done. Container `onlycli-demo` removed; `openapi.yaml` and `server.go` untouched.\n\n**Install method**\n- Single ephemeral `golang:1.24-bookworm` (linux/arm64) container.\n- Downloaded the upstream v0.2.0 linux/arm64 release tarball, verified it with `checksums.txt` (`sha256sum -c`), extracted, and installed to `/usr/local/bin/onlycli`.\n- `onlycli version` confirmed `0.2.0` (commit `84217179091d...`, built `2026-03-27`).\n\n**Execution path**\n- `onlycli generate --spec openapi.yaml --name demo-cli --out ./demo-cli` \u2192 1 group (`api`), 1 command (`get-echo`).\n- `cd demo-cli && go mod tidy && go build -o demo-cli .`\n- `go run server.go` in `/work`, served on `127.0.0.1:18080`.\n- Smoke: `cd demo-cli && ./demo-cli api get-echo --id 42 --format json`\n\n**Smoke output**\n```json\n{\"id\":\"42\",\"message\":\"ok\"}\n```\n\n**Artifacts**\n- `out/demo-cli/` (generated project + built `demo-cli` binary)\n- `out/result.json` (all required fields)\n\n**Friction**\n- `bash -lc` in the Go image resets PATH and hides `/usr/local/go/bin`; used `bash -c` instead.\n- The spec has no tags, so the command is grouped under `api`; `operationId: getEcho` becomes `get-echo`.\n- Generated CLI defaulted to bearer auth (auto-detected) but the mock server needs no token, so it worked unauthenticated."
+}

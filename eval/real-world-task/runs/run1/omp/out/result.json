@@ -1,0 +1,9 @@
+{
+  "target": "onlycli",
+  "version": "0.2.0",
+  "install_command": "curl -fsSL -o /tmp/onlycli.tar.gz https://github.com/OnlyCLI/OnlyCLI/releases/download/v0.2.0/onlycli_0.2.0_linux_arm64.tar.gz && tar -xzf /tmp/onlycli.tar.gz -C /tmp && install -m 0755 /tmp/onlycli /usr/local/bin/onlycli",
+  "generate_command": "onlycli generate --spec ./openapi.yaml --name demo-cli --out ./demo-cli",
+  "build_command": "cd demo-cli && go mod tidy && go build -o demo-cli .",
+  "smoke_command": "./demo-cli api get-echo --id 42 --format json",
+  "smoke_output": "{\"id\":\"42\",\"message\":\"ok\"}"
+}

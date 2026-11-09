@@ -1,0 +1,33 @@
+Completed successfully.
+
+**Install method**
+- Used `golang:1.24-bookworm` in one Docker container, never the host.
+- Downloaded the upstream `onlycli_0.2.0_linux_arm64.tar.gz` release asset.
+- Verified SHA-256 against upstream `checksums.txt`, then installed the `onlycli` binary to `/usr/local/bin`.
+- Confirmed: `onlycli version 0.2.0`.
+
+**Execution path**
+- Generated project: `onlycli generate --spec openapi.yaml --name demo-cli --out ./demo-cli`
+- Built: `cd demo-cli && go mod tidy && go build -o demo-cli .`
+- Started `server.go` on `127.0.0.1:18080` inside the same container.
+- Smoke command:
+  ```bash
+  ./demo-cli api get-echo --id 42 --format json
+  ```
+- Smoke output:
+  ```json
+  {"id":"42","message":"ok"}
+  ```
+
+**Artifacts**
+- Generated project and binary: `out/demo-cli/`
+- Built binary: `out/demo-cli/demo-cli`
+- Result file: `out/result.json`
+
+The container was removed after copying artifacts. `openapi.yaml` and `server.go` were not modified.
+
+**Friction**
+- The spec has no tags, so the generated operation was placed under a generic `api` group.
+- The release tarball was required to pin exactly v0.2.0, since the README’s `go install ...@latest` does not guarantee that version.
+- `go mod tidy` required network access to fetch generated dependencies.
+- The generated project defaults its module path to `github.com/demo-cli/demo-cli-cli`, which is redundant but harmless.
