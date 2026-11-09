@@ -104,7 +104,7 @@ oh-my-pi keeps pi's single-host model but moves search, shell, AST edits, VCS, a
 
 Lineage matters here:
 
-- **pi** is the smallest and the ancestor of the other two conceptually: a minimal harness whose README explicitly says it ships without sub-agents and plan mode, and expects extensions to add them (`pi/README.md`).
+- **pi** is the smallest, and it is the ancestor of **oh-my-pi**, not of opencode. The git histories make this verifiable: oh-my-pi's history contains pi's root commit `a74c5da11` (2025-08-09), while opencode's history starts at a separate root commit `4b0ea68d7a` (2025-03-21). pi's README says it ships without sub-agents and plan mode and expects extensions to add them (`pi/README.md`).
 - **oh-my-pi** is a fork of `badlogic/pi-mono` (now `earendil-works/pi`) and keeps the `pi-*` package names, the `pi-` role-selector prefix, and several `legacy-pi-*` compatibility shims (`oh-my-pi/packages/coding-agent/src/*/legacy-pi-*`, `oh-my-pi/README.md`). Its additions are mostly surface area and native code.
 - **opencode** shares no lineage with either. It is the most "productized" of the three: multiple clients, a long-lived daemon, migrations, and a plugin ecosystem.
 
