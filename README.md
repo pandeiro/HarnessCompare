@@ -46,10 +46,7 @@ The harness repositories are submodules rather than copies so this repository st
 The evals require the three CLIs on `PATH` and an authenticated OpenCode Go account.
 
 ```sh
-git clone --recurse-submodules <this-repo-url>
-cd HarnessCompare
-
-# Optional: fetch the exact commits recorded in the submodule gitlinks
+# From a clone of this repository, with submodules initialized:
 git submodule update --init --recursive
 
 node eval/harness-task/runner.mjs --task slugify --trials 3 --timeout 600 --tag run1
