@@ -1,0 +1,17 @@
+{
+  "name": "deps",
+  "title": "dependency planner",
+  "start": "A small ESM package whose `src/plan.js` returns incomplete or unstable plans",
+  "visibleTest": "test/plan.test.js",
+  "hiddenTest": "plan.hidden.test.js",
+  "visibleTotal": 5,
+  "visibleFailures": 4,
+  "hiddenTotal": 15,
+  "related": [
+    {
+      "label": "Slugify task",
+      "href": "task.md"
+    }
+  ],
+  "designNote": "The planner requires topological ordering, validation, deterministic wave ordering, and cycle reporting. Successful diffs were roughly twice the size of the slugify diffs."
+}

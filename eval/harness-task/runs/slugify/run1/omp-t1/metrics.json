@@ -1,0 +1,92 @@
+{
+  "harness": "omp",
+  "trial": 1,
+  "id": "omp-t1",
+  "startedAt": "2026-11-09T15:34:21.114Z",
+  "model": "opencode-go/deepseek-v4.1-flash",
+  "command": "omp -p --mode json --model opencode-go/deepseek-v4.1-flash --api-key <key> --no-session --auto-approve --no-extensions --no-skills --no-context-files --no-rules --no-lsp --max-time 10m <prompt>",
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "durationMs": 70895.6,
+  "stdoutBytes": 569293,
+  "stderrBytes": 0,
+  "eventCount": 924,
+  "malformedEventLines": 0,
+  "modelsReported": [
+    "deepseek-v4.1-flash"
+  ],
+  "providersReported": [
+    "opencode-go"
+  ],
+  "usage": {
+    "input": 9844,
+    "output": 5200,
+    "reasoning": 2843,
+    "cacheRead": 93312,
+    "cacheWrite": 0,
+    "total": 108356
+  },
+  "costUsd": 0.004877,
+  "turns": 9,
+  "steps": 9,
+  "toolCalls": {
+    "read": 3,
+    "bash": 5,
+    "write": 1,
+    "edit": 1
+  },
+  "toolCallCount": 10,
+  "testInvocations": 15,
+  "errors": [],
+  "diff": {
+    "changedFiles": 1,
+    "insertions": 30,
+    "deletions": 6,
+    "files": [
+      {
+        "status": "M",
+        "path": "src/slug.js"
+      }
+    ],
+    "forbidden": []
+  },
+  "visible": {
+    "passed": 6,
+    "failed": 0,
+    "passedNames": [
+      "basic words and punctuation",
+      "collapses separators and trims",
+      "custom separator",
+      "removes diacritics",
+      "maxLength cuts at a word boundary",
+      "empty input"
+    ],
+    "failedNames": [],
+    "exitCode": 0,
+    "timedOut": false
+  },
+  "hidden": {
+    "passed": 12,
+    "failed": 0,
+    "passedNames": [
+      "hidden: diacritics are transliterated",
+      "hidden: non-Latin letters are preserved",
+      "hidden: punctuation and underscores collapse",
+      "hidden: custom separator with regex metacharacter",
+      "hidden: empty and separator-only inputs",
+      "hidden: maxLength hard-cuts a long word",
+      "hidden: maxLength cuts at the last separator",
+      "hidden: maxLength removes a trailing separator",
+      "hidden: maxLength of one",
+      "hidden: invalid separators throw TypeError",
+      "hidden: invalid maxLength throws TypeError",
+      "hidden: mixed digits and diacritics"
+    ],
+    "failedNames": [],
+    "exitCode": 0,
+    "timedOut": false
+  },
+  "fullSolve": true,
+  "task": "slugify"
+}

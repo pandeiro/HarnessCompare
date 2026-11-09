@@ -1,0 +1,5 @@
+You are working in a small JavaScript repository at your current working directory.
+
+Read SPEC.md and fix src/slug.js so it implements the specification. Run the test suite to check your work. Do not modify SPEC.md, package.json, or anything under test/. Do not add dependencies.
+
+When you are done, reply with a concise summary of the change and the test result.

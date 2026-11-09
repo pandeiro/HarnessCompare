@@ -1,0 +1,9 @@
+Implemented SPEC in `src/plan.js`:
+
+- `PlanError` now carries `code` plus spec'd extras (`index`, `id`, `dependency`, `cycle`).
+- Full validation: `INVALID_TASKS`, `INVALID_TASK` (plain object + non-empty string id, with index), `DUPLICATE_ID`, `INVALID_DEPS` (array of non-empty strings), `UNKNOWN_DEP`.
+- Duplicate deps deduped via `Set`; wave planning is leveled Kahn, each wave `.sort()`ed by UTF-16 code units; `order` flattened.
+- `CYCLE.cycle` = all unplaced tasks (cycles and their dependents), sorted.
+- `buildPlan([])` → `{ waves: [], order: [] }`.
+
+Verification: `npm test` — 5/5 pass. Additional throwaway smoke test confirmed every error code/field, dedup (`["a","a"]`), empty input, and UTF-16 sort ordering (`"z"` before `"😀"`).

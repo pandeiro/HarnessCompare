@@ -1,0 +1,1 @@
+I'll start by reading SPEC.md and the source files.All 5 tests pass. Implemented full spec in `src/plan.js`: input validation (`INVALID_TASKS`, `INVALID_TASK`, `DUPLICATE_ID`, `INVALID_DEPS`, `UNKNOWN_DEP`), sorted wave planning, and `CYCLE` detection including dependents.

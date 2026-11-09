@@ -1,0 +1,110 @@
+diff --git a/src/plan.js b/src/plan.js
+index 997e0ad..95c7d62 100644
+--- a/src/plan.js
++++ b/src/plan.js
+@@ -1,21 +1,100 @@
+ export class PlanError extends Error {
+-  constructor(code, message) {
++  constructor(code, message, details = {}) {
+     super(message);
+     this.name = "PlanError";
+     this.code = code;
++    Object.assign(this, details);
+   }
+ }
+ 
++function isPlainObject(value) {
++  if (value === null || typeof value !== "object") return false;
++  const proto = Object.getPrototypeOf(value);
++  return proto === Object.prototype || proto === null;
++}
++
++function isNonEmptyString(value) {
++  return typeof value === "string" && value.length > 0;
++}
++
+ export function buildPlan(tasks) {
++  if (!Array.isArray(tasks)) {
++    throw new PlanError("INVALID_TASKS", "tasks must be an array");
++  }
++
++  const ids = new Set();
++
++  for (let index = 0; index < tasks.length; index += 1) {
++    const task = tasks[index];
++    if (!isPlainObject(task) || !isNonEmptyString(task.id)) {
++      throw new PlanError(
++        "INVALID_TASK",
++        "task must be a plain object with a non-empty string id",
++        { index },
++      );
++    }
++    ids.add(task.id);
++  }
++
++  const seen = new Set();
++  for (const task of tasks) {
++    if (seen.has(task.id)) {
++      throw new PlanError("DUPLICATE_ID", `duplicate task id: ${task.id}`, {
++        id: task.id,
++      });
++    }
++    seen.add(task.id);
++  }
++
++  for (const task of tasks) {
++    const deps = task.deps;
++    if (deps !== undefined) {
++      if (!Array.isArray(deps) || !deps.every(isNonEmptyString)) {
++        throw new PlanError(
++          "INVALID_DEPS",
++          `deps for task ${task.id} must be an array of non-empty strings`,
++          { id: task.id },
++        );
++      }
++    }
++  }
++
++  for (const task of tasks) {
++    for (const dep of task.deps ?? []) {
++      if (!ids.has(dep)) {
++        throw new PlanError(
++          "UNKNOWN_DEP",
++          `task ${task.id} depends on unknown task ${dep}`,
++          { id: task.id, dependency: dep },
++        );
++      }
++    }
++  }
++
+   const waves = [];
++  const done = new Set();
+   let remaining = tasks.slice();
+ 
+   while (remaining.length > 0) {
+-    const done = new Set(waves.flat());
+-    const wave = remaining.filter((task) => (task.deps ?? []).every((dep) => done.has(dep)));
++    const wave = remaining.filter((task) =>
++      (task.deps ?? []).every((dep) => done.has(dep)),
++    );
++
+     if (wave.length === 0) break;
+-    waves.push(wave.map((task) => task.id));
+-    remaining = remaining.filter((task) => !wave.includes(task));
++
++    const waveIds = wave.map((task) => task.id).sort();
++    waves.push(waveIds);
++    for (const id of waveIds) done.add(id);
++
++    const placed = new Set(waveIds);
++    remaining = remaining.filter((task) => !placed.has(task.id));
++  }
++
++  if (remaining.length > 0) {
++    const cycle = remaining.map((task) => task.id).sort();
++    throw new PlanError("CYCLE", "the dependency graph contains a cycle", {
++      cycle,
++    });
+   }
+ 
+   return { waves, order: waves.flat() };

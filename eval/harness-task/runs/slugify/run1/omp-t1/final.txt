@@ -1,0 +1,9 @@
+Fixed `src/slug.js` to implement SPEC.md:
+
+- Normalizes input with NFKD, strips combining marks, lowercases.
+- Keeps Unicode `\p{L}`/`\p{N}` (CJK, accented text), replacing non-alphanumeric runs with the separator.
+- Collapses repeated separators and trims edges.
+- Truncation now respects word boundaries: cuts at the last separator within the limit when the limit falls inside a word, hard-cuts otherwise, and strips any trailing separator.
+- Validates `separator` (non-empty string) and `maxLength` (positive integer), throwing `TypeError`; `separator` is regex-escaped.
+
+Verification: `npm test` — all 6 tests pass (0 failures). Additional throwaway checks confirmed all five spec examples, empty/punctuation-only input, Unicode, and both validation failures. `SPEC.md`, `package.json`, and `test/` untouched; no dependencies added.

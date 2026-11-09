@@ -1,0 +1,66 @@
+diff --git a/src/slug.js b/src/slug.js
+index 1b5c76f..260c086 100644
+--- a/src/slug.js
++++ b/src/slug.js
+@@ -1,13 +1,55 @@
++const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
++
++const isWordCharacter = (character) =>
++  character !== undefined && /[\p{L}\p{N}]/u.test(character);
++
+ export function slugify(input, options = {}) {
+-  const separator = options.separator ?? "-";
++  const separator = options.separator === undefined ? "-" : options.separator;
++  if (typeof separator !== "string" || separator.length === 0) {
++    throw new TypeError("options.separator must be a non-empty string");
++  }
++
++  if (
++    options.maxLength !== undefined &&
++    (!Number.isInteger(options.maxLength) || options.maxLength <= 0)
++  ) {
++    throw new TypeError("options.maxLength must be a positive integer");
++  }
++
++  const escapedSeparator = escapeRegExp(separator);
++  const separatorRun = new RegExp(escapedSeparator + "+", "g");
++  const leadingOrTrailingSeparators = new RegExp(
++    `^(?:${escapedSeparator})+|(?:${escapedSeparator})+$`,
++    "g",
++  );
++
+   let slug = String(input)
++    .normalize("NFKD")
++    .replace(/\p{M}/gu, "")
+     .toLowerCase()
+-    .trim()
+-    .replace(/[^a-z0-9]+/g, separator)
+-    .replace(new RegExp(`^${separator}+|${separator}+$`, "g"), "");
++    .replace(/[^\p{L}\p{N}]+/gu, separator)
++    .replace(separatorRun, separator)
++    .replace(leadingOrTrailingSeparators, "");
++
++  if (options.maxLength !== undefined && slug.length > options.maxLength) {
++    const limit = options.maxLength;
++    const cutFallsInsideWord =
++      isWordCharacter(slug[limit - 1]) && isWordCharacter(slug[limit]);
++
++    if (cutFallsInsideWord) {
++      const lastSeparator = slug.slice(0, limit).lastIndexOf(separator);
++      if (lastSeparator > 0) {
++        slug = slug.slice(0, lastSeparator);
++      } else {
++        slug = slug.slice(0, limit);
++      }
++    } else {
++      slug = slug.slice(0, limit);
++    }
+ 
+-  if (options.maxLength && slug.length > options.maxLength) {
+-    slug = slug.slice(0, options.maxLength);
++    if (slug.endsWith(separator)) {
++      slug = slug.slice(0, -separator.length);
++    }
+   }
+ 
+   return slug;

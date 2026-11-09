@@ -1,0 +1,823 @@
+[
+  {
+    "task": "deps",
+    "harness": "opencode",
+    "trial": 1,
+    "id": "opencode-t1",
+    "startedAt": "2026-11-09T15:43:48.556Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "opencode run --format json --pure --model opencode-go/deepseek-v4.1-flash --auto --dir /var/folders/38/txwkwdps54d04z3jlxvksl000000gn/T/harness-task/deps/run1/opencode-t1/workspace --title eval-workspace <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 10370.1,
+    "stdoutBytes": 22241,
+    "stderrBytes": 0,
+    "eventCount": 12,
+    "malformedEventLines": 0,
+    "modelsReported": [],
+    "providersReported": [],
+    "usage": {
+      "input": 9951,
+      "output": 859,
+      "reasoning": 179,
+      "cacheRead": 31104,
+      "cacheWrite": 0,
+      "total": 42093
+    },
+    "costUsd": 0.002209,
+    "turns": 4,
+    "steps": 4,
+    "toolCalls": {
+      "bash": 3
+    },
+    "toolCallCount": 3,
+    "testInvocations": 1,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 82,
+      "deletions": 5,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/plan.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 5,
+      "failed": 0,
+      "passedNames": [
+        "builds a chain",
+        "groups a diamond into waves",
+        "sorts ids inside a wave",
+        "rejects duplicate ids",
+        "rejects cycles"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 15,
+      "failed": 0,
+      "passedNames": [
+        "hidden: empty task list",
+        "hidden: single independent task",
+        "hidden: long chain",
+        "hidden: wave membership on a mixed graph",
+        "hidden: ids sort by code unit, not locale",
+        "hidden: duplicate ids report the id",
+        "hidden: unknown dependency reports task and dependency",
+        "hidden: self dependency is a cycle",
+        "hidden: cycle includes blocked dependents",
+        "hidden: duplicate dependency names are deduped",
+        "hidden: missing deps property means no dependencies",
+        "hidden: invalid tasks",
+        "hidden: invalid deps",
+        "hidden: no mutation of the input",
+        "hidden: complex graph is complete and consistent"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true
+  },
+  {
+    "task": "deps",
+    "harness": "opencode",
+    "trial": 2,
+    "id": "opencode-t2",
+    "startedAt": "2026-11-09T15:43:59.161Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "opencode run --format json --pure --model opencode-go/deepseek-v4.1-flash --auto --dir /var/folders/38/txwkwdps54d04z3jlxvksl000000gn/T/harness-task/deps/run1/opencode-t2/workspace --title eval-workspace <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 21774.8,
+    "stdoutBytes": 27110,
+    "stderrBytes": 0,
+    "eventCount": 21,
+    "malformedEventLines": 0,
+    "modelsReported": [],
+    "providersReported": [],
+    "usage": {
+      "input": 11493,
+      "output": 1363,
+      "reasoning": 520,
+      "cacheRead": 55168,
+      "cacheWrite": 0,
+      "total": 68544
+    },
+    "costUsd": 0.003019,
+    "turns": 6,
+    "steps": 6,
+    "toolCalls": {
+      "read": 4,
+      "bash": 2,
+      "write": 1
+    },
+    "toolCallCount": 7,
+    "testInvocations": 1,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 70,
+      "deletions": 6,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/plan.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 5,
+      "failed": 0,
+      "passedNames": [
+        "builds a chain",
+        "groups a diamond into waves",
+        "sorts ids inside a wave",
+        "rejects duplicate ids",
+        "rejects cycles"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 15,
+      "failed": 0,
+      "passedNames": [
+        "hidden: empty task list",
+        "hidden: single independent task",
+        "hidden: long chain",
+        "hidden: wave membership on a mixed graph",
+        "hidden: ids sort by code unit, not locale",
+        "hidden: duplicate ids report the id",
+        "hidden: unknown dependency reports task and dependency",
+        "hidden: self dependency is a cycle",
+        "hidden: cycle includes blocked dependents",
+        "hidden: duplicate dependency names are deduped",
+        "hidden: missing deps property means no dependencies",
+        "hidden: invalid tasks",
+        "hidden: invalid deps",
+        "hidden: no mutation of the input",
+        "hidden: complex graph is complete and consistent"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true
+  },
+  {
+    "task": "deps",
+    "harness": "opencode",
+    "trial": 3,
+    "id": "opencode-t3",
+    "startedAt": "2026-11-09T15:44:21.141Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "opencode run --format json --pure --model opencode-go/deepseek-v4.1-flash --auto --dir /var/folders/38/txwkwdps54d04z3jlxvksl000000gn/T/harness-task/deps/run1/opencode-t3/workspace --title eval-workspace <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 19415.9,
+    "stdoutBytes": 24782,
+    "stderrBytes": 0,
+    "eventCount": 18,
+    "malformedEventLines": 0,
+    "modelsReported": [],
+    "providersReported": [],
+    "usage": {
+      "input": 11703,
+      "output": 1148,
+      "reasoning": 1204,
+      "cacheRead": 44928,
+      "cacheWrite": 0,
+      "total": 58983
+    },
+    "costUsd": 0.003301,
+    "turns": 5,
+    "steps": 5,
+    "toolCalls": {
+      "read": 2,
+      "bash": 3,
+      "write": 1
+    },
+    "toolCallCount": 6,
+    "testInvocations": 1,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 84,
+      "deletions": 5,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/plan.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 5,
+      "failed": 0,
+      "passedNames": [
+        "builds a chain",
+        "groups a diamond into waves",
+        "sorts ids inside a wave",
+        "rejects duplicate ids",
+        "rejects cycles"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 15,
+      "failed": 0,
+      "passedNames": [
+        "hidden: empty task list",
+        "hidden: single independent task",
+        "hidden: long chain",
+        "hidden: wave membership on a mixed graph",
+        "hidden: ids sort by code unit, not locale",
+        "hidden: duplicate ids report the id",
+        "hidden: unknown dependency reports task and dependency",
+        "hidden: self dependency is a cycle",
+        "hidden: cycle includes blocked dependents",
+        "hidden: duplicate dependency names are deduped",
+        "hidden: missing deps property means no dependencies",
+        "hidden: invalid tasks",
+        "hidden: invalid deps",
+        "hidden: no mutation of the input",
+        "hidden: complex graph is complete and consistent"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true
+  },
+  {
+    "task": "deps",
+    "harness": "pi",
+    "trial": 1,
+    "id": "pi-t1",
+    "startedAt": "2026-11-09T15:44:40.780Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "pi -p --mode json --model opencode-go/deepseek-v4.1-flash --api-key <key> --no-session --no-context-files --no-extensions --no-skills --no-prompt-templates --no-themes <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 28358.3,
+    "stdoutBytes": 388592,
+    "stderrBytes": 430,
+    "eventCount": 939,
+    "malformedEventLines": 0,
+    "modelsReported": [
+      "deepseek-v4.1-flash"
+    ],
+    "providersReported": [
+      "opencode-go"
+    ],
+    "usage": {
+      "input": 7162,
+      "output": 3222,
+      "reasoning": 1911,
+      "cacheRead": 18816,
+      "cacheWrite": 0,
+      "total": 29200
+    },
+    "costUsd": 0.003064,
+    "turns": 6,
+    "steps": 6,
+    "toolCalls": {
+      "bash": 5
+    },
+    "toolCallCount": 5,
+    "testInvocations": 4,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 90,
+      "deletions": 7,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/plan.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 5,
+      "failed": 0,
+      "passedNames": [
+        "builds a chain",
+        "groups a diamond into waves",
+        "sorts ids inside a wave",
+        "rejects duplicate ids",
+        "rejects cycles"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 15,
+      "failed": 0,
+      "passedNames": [
+        "hidden: empty task list",
+        "hidden: single independent task",
+        "hidden: long chain",
+        "hidden: wave membership on a mixed graph",
+        "hidden: ids sort by code unit, not locale",
+        "hidden: duplicate ids report the id",
+        "hidden: unknown dependency reports task and dependency",
+        "hidden: self dependency is a cycle",
+        "hidden: cycle includes blocked dependents",
+        "hidden: duplicate dependency names are deduped",
+        "hidden: missing deps property means no dependencies",
+        "hidden: invalid tasks",
+        "hidden: invalid deps",
+        "hidden: no mutation of the input",
+        "hidden: complex graph is complete and consistent"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true
+  },
+  {
+    "task": "deps",
+    "harness": "pi",
+    "trial": 2,
+    "id": "pi-t2",
+    "startedAt": "2026-11-09T15:45:09.375Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "pi -p --mode json --model opencode-go/deepseek-v4.1-flash --api-key <key> --no-session --no-context-files --no-extensions --no-skills --no-prompt-templates --no-themes <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 27243.7,
+    "stdoutBytes": 484355,
+    "stderrBytes": 430,
+    "eventCount": 1214,
+    "malformedEventLines": 0,
+    "modelsReported": [
+      "deepseek-v4.1-flash"
+    ],
+    "providersReported": [
+      "opencode-go"
+    ],
+    "usage": {
+      "input": 4485,
+      "output": 3986,
+      "reasoning": 2202,
+      "cacheRead": 30208,
+      "cacheWrite": 0,
+      "total": 38679
+    },
+    "costUsd": 0.003155,
+    "turns": 7,
+    "steps": 7,
+    "toolCalls": {
+      "bash": 4,
+      "write": 1,
+      "edit": 1
+    },
+    "toolCallCount": 6,
+    "testInvocations": 9,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 104,
+      "deletions": 7,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/plan.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 5,
+      "failed": 0,
+      "passedNames": [
+        "builds a chain",
+        "groups a diamond into waves",
+        "sorts ids inside a wave",
+        "rejects duplicate ids",
+        "rejects cycles"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 15,
+      "failed": 0,
+      "passedNames": [
+        "hidden: empty task list",
+        "hidden: single independent task",
+        "hidden: long chain",
+        "hidden: wave membership on a mixed graph",
+        "hidden: ids sort by code unit, not locale",
+        "hidden: duplicate ids report the id",
+        "hidden: unknown dependency reports task and dependency",
+        "hidden: self dependency is a cycle",
+        "hidden: cycle includes blocked dependents",
+        "hidden: duplicate dependency names are deduped",
+        "hidden: missing deps property means no dependencies",
+        "hidden: invalid tasks",
+        "hidden: invalid deps",
+        "hidden: no mutation of the input",
+        "hidden: complex graph is complete and consistent"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true
+  },
+  {
+    "task": "deps",
+    "harness": "pi",
+    "trial": 3,
+    "id": "pi-t3",
+    "startedAt": "2026-11-09T15:45:36.888Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "pi -p --mode json --model opencode-go/deepseek-v4.1-flash --api-key <key> --no-session --no-context-files --no-extensions --no-skills --no-prompt-templates --no-themes <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 21106.1,
+    "stdoutBytes": 547866,
+    "stderrBytes": 430,
+    "eventCount": 1666,
+    "malformedEventLines": 0,
+    "modelsReported": [
+      "deepseek-v4.1-flash"
+    ],
+    "providersReported": [
+      "opencode-go"
+    ],
+    "usage": {
+      "input": 6115,
+      "output": 2677,
+      "reasoning": 1251,
+      "cacheRead": 13056,
+      "cacheWrite": 0,
+      "total": 21848
+    },
+    "costUsd": 0.002563,
+    "turns": 5,
+    "steps": 5,
+    "toolCalls": {
+      "bash": 4,
+      "read": 1,
+      "write": 1
+    },
+    "toolCallCount": 6,
+    "testInvocations": 4,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 93,
+      "deletions": 9,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/plan.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 5,
+      "failed": 0,
+      "passedNames": [
+        "builds a chain",
+        "groups a diamond into waves",
+        "sorts ids inside a wave",
+        "rejects duplicate ids",
+        "rejects cycles"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 15,
+      "failed": 0,
+      "passedNames": [
+        "hidden: empty task list",
+        "hidden: single independent task",
+        "hidden: long chain",
+        "hidden: wave membership on a mixed graph",
+        "hidden: ids sort by code unit, not locale",
+        "hidden: duplicate ids report the id",
+        "hidden: unknown dependency reports task and dependency",
+        "hidden: self dependency is a cycle",
+        "hidden: cycle includes blocked dependents",
+        "hidden: duplicate dependency names are deduped",
+        "hidden: missing deps property means no dependencies",
+        "hidden: invalid tasks",
+        "hidden: invalid deps",
+        "hidden: no mutation of the input",
+        "hidden: complex graph is complete and consistent"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true
+  },
+  {
+    "task": "deps",
+    "harness": "omp",
+    "trial": 1,
+    "id": "omp-t1",
+    "startedAt": "2026-11-09T15:45:58.257Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "omp -p --mode json --model opencode-go/deepseek-v4.1-flash --api-key <key> --no-session --auto-approve --no-extensions --no-skills --no-context-files --no-rules --no-lsp --max-time 10m <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 22615.8,
+    "stdoutBytes": 570384,
+    "stderrBytes": 0,
+    "eventCount": 1878,
+    "malformedEventLines": 0,
+    "modelsReported": [
+      "deepseek-v4.1-flash"
+    ],
+    "providersReported": [
+      "opencode-go"
+    ],
+    "usage": {
+      "input": 6425,
+      "output": 2683,
+      "reasoning": 988,
+      "cacheRead": 55552,
+      "cacheWrite": 0,
+      "total": 64660
+    },
+    "costUsd": 0.00274,
+    "turns": 6,
+    "steps": 6,
+    "toolCalls": {
+      "bash": 4,
+      "write": 1
+    },
+    "toolCallCount": 5,
+    "testInvocations": 5,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 88,
+      "deletions": 9,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/plan.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 5,
+      "failed": 0,
+      "passedNames": [
+        "builds a chain",
+        "groups a diamond into waves",
+        "sorts ids inside a wave",
+        "rejects duplicate ids",
+        "rejects cycles"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 15,
+      "failed": 0,
+      "passedNames": [
+        "hidden: empty task list",
+        "hidden: single independent task",
+        "hidden: long chain",
+        "hidden: wave membership on a mixed graph",
+        "hidden: ids sort by code unit, not locale",
+        "hidden: duplicate ids report the id",
+        "hidden: unknown dependency reports task and dependency",
+        "hidden: self dependency is a cycle",
+        "hidden: cycle includes blocked dependents",
+        "hidden: duplicate dependency names are deduped",
+        "hidden: missing deps property means no dependencies",
+        "hidden: invalid tasks",
+        "hidden: invalid deps",
+        "hidden: no mutation of the input",
+        "hidden: complex graph is complete and consistent"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true
+  },
+  {
+    "task": "deps",
+    "harness": "omp",
+    "trial": 2,
+    "id": "omp-t2",
+    "startedAt": "2026-11-09T15:46:21.141Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "omp -p --mode json --model opencode-go/deepseek-v4.1-flash --api-key <key> --no-session --auto-approve --no-extensions --no-skills --no-context-files --no-rules --no-lsp --max-time 10m <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 38122.5,
+    "stdoutBytes": 327746,
+    "stderrBytes": 0,
+    "eventCount": 893,
+    "malformedEventLines": 0,
+    "modelsReported": [
+      "deepseek-v4.1-flash"
+    ],
+    "providersReported": [
+      "opencode-go"
+    ],
+    "usage": {
+      "input": 14271,
+      "output": 2810,
+      "reasoning": 983,
+      "cacheRead": 57216,
+      "cacheWrite": 0,
+      "total": 74297
+    },
+    "costUsd": 0.003998,
+    "turns": 7,
+    "steps": 7,
+    "toolCalls": {
+      "read": 4,
+      "glob": 1,
+      "write": 1,
+      "bash": 2
+    },
+    "toolCallCount": 8,
+    "testInvocations": 8,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 93,
+      "deletions": 7,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/plan.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 5,
+      "failed": 0,
+      "passedNames": [
+        "builds a chain",
+        "groups a diamond into waves",
+        "sorts ids inside a wave",
+        "rejects duplicate ids",
+        "rejects cycles"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 15,
+      "failed": 0,
+      "passedNames": [
+        "hidden: empty task list",
+        "hidden: single independent task",
+        "hidden: long chain",
+        "hidden: wave membership on a mixed graph",
+        "hidden: ids sort by code unit, not locale",
+        "hidden: duplicate ids report the id",
+        "hidden: unknown dependency reports task and dependency",
+        "hidden: self dependency is a cycle",
+        "hidden: cycle includes blocked dependents",
+        "hidden: duplicate dependency names are deduped",
+        "hidden: missing deps property means no dependencies",
+        "hidden: invalid tasks",
+        "hidden: invalid deps",
+        "hidden: no mutation of the input",
+        "hidden: complex graph is complete and consistent"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true
+  },
+  {
+    "task": "deps",
+    "harness": "omp",
+    "trial": 3,
+    "id": "omp-t3",
+    "startedAt": "2026-11-09T15:46:59.513Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "omp -p --mode json --model opencode-go/deepseek-v4.1-flash --api-key <key> --no-session --auto-approve --no-extensions --no-skills --no-context-files --no-rules --no-lsp --max-time 10m <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 21712.3,
+    "stdoutBytes": 308323,
+    "stderrBytes": 0,
+    "eventCount": 582,
+    "malformedEventLines": 0,
+    "modelsReported": [
+      "deepseek-v4.1-flash"
+    ],
+    "providersReported": [
+      "opencode-go"
+    ],
+    "usage": {
+      "input": 12061,
+      "output": 1958,
+      "reasoning": 284,
+      "cacheRead": 57600,
+      "cacheWrite": 0,
+      "total": 71619
+    },
+    "costUsd": 0.003157,
+    "turns": 7,
+    "steps": 7,
+    "toolCalls": {
+      "read": 5,
+      "bash": 3,
+      "write": 1
+    },
+    "toolCallCount": 9,
+    "testInvocations": 8,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 87,
+      "deletions": 9,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/plan.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 5,
+      "failed": 0,
+      "passedNames": [
+        "builds a chain",
+        "groups a diamond into waves",
+        "sorts ids inside a wave",
+        "rejects duplicate ids",
+        "rejects cycles"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 15,
+      "failed": 0,
+      "passedNames": [
+        "hidden: empty task list",
+        "hidden: single independent task",
+        "hidden: long chain",
+        "hidden: wave membership on a mixed graph",
+        "hidden: ids sort by code unit, not locale",
+        "hidden: duplicate ids report the id",
+        "hidden: unknown dependency reports task and dependency",
+        "hidden: self dependency is a cycle",
+        "hidden: cycle includes blocked dependents",
+        "hidden: duplicate dependency names are deduped",
+        "hidden: missing deps property means no dependencies",
+        "hidden: invalid tasks",
+        "hidden: invalid deps",
+        "hidden: no mutation of the input",
+        "hidden: complex graph is complete and consistent"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true
+  }
+]

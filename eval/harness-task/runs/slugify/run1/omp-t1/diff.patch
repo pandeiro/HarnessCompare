@@ -1,0 +1,48 @@
+diff --git a/src/slug.js b/src/slug.js
+index 1b5c76f..3906750 100644
+--- a/src/slug.js
++++ b/src/slug.js
+@@ -1,13 +1,37 @@
+ export function slugify(input, options = {}) {
+-  const separator = options.separator ?? "-";
++  const separator = options.separator === undefined ? "-" : options.separator;
++  if (typeof separator !== "string" || separator.length === 0) {
++    throw new TypeError("options.separator must be a non-empty string");
++  }
++
++  const { maxLength } = options;
++  if (maxLength !== undefined && !(Number.isInteger(maxLength) && maxLength > 0)) {
++    throw new TypeError("options.maxLength must be a positive integer");
++  }
++
++  const escaped = separator.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
++  const separatorRun = new RegExp(`${escaped}+`, "g");
++  const edgeSeparators = new RegExp(`^${escaped}+|${escaped}+$`, "g");
++
+   let slug = String(input)
++    .normalize("NFKD")
++    .replace(/\p{M}+/gu, "")
+     .toLowerCase()
+-    .trim()
+-    .replace(/[^a-z0-9]+/g, separator)
+-    .replace(new RegExp(`^${separator}+|${separator}+$`, "g"), "");
++    .replace(/[^\p{L}\p{N}]+/gu, separator)
++    .replace(separatorRun, separator)
++    .replace(edgeSeparators, "");
+ 
+-  if (options.maxLength && slug.length > options.maxLength) {
+-    slug = slug.slice(0, options.maxLength);
++  if (maxLength !== undefined && [...slug].length > maxLength) {
++    const head = [...slug].slice(0, maxLength).join("");
++    if (slug.startsWith(separator, head.length)) {
++      slug = head;
++    } else {
++      const cut = head.lastIndexOf(separator);
++      slug = cut > 0 ? head.slice(0, cut) : head;
++    }
++    while (slug.endsWith(separator)) {
++      slug = slug.slice(0, slug.length - separator.length);
++    }
+   }
+ 
+   return slug;

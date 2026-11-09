@@ -1,0 +1,3 @@
+Fixed `src/slug.js` to follow SPEC.md: NFKD normalization with combining-mark removal, Unicode letter/number handling, separator collapsing/trimming, word-boundary-aware `maxLength` truncation, and validation of `separator`/`maxLength`.
+
+All 6 tests pass (`npm test`), and the spec examples including `東京-station` and `abcde` check out.

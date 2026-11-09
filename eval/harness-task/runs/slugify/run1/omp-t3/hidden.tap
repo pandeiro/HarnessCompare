@@ -1,0 +1,82 @@
+TAP version 13
+# Subtest: hidden: diacritics are transliterated
+ok 1 - hidden: diacritics are transliterated
+  ---
+  duration_ms: 1.415667
+  type: 'test'
+  ...
+# Subtest: hidden: non-Latin letters are preserved
+ok 2 - hidden: non-Latin letters are preserved
+  ---
+  duration_ms: 0.370917
+  type: 'test'
+  ...
+# Subtest: hidden: punctuation and underscores collapse
+ok 3 - hidden: punctuation and underscores collapse
+  ---
+  duration_ms: 0.086583
+  type: 'test'
+  ...
+# Subtest: hidden: custom separator with regex metacharacter
+ok 4 - hidden: custom separator with regex metacharacter
+  ---
+  duration_ms: 0.070125
+  type: 'test'
+  ...
+# Subtest: hidden: empty and separator-only inputs
+ok 5 - hidden: empty and separator-only inputs
+  ---
+  duration_ms: 0.04775
+  type: 'test'
+  ...
+# Subtest: hidden: maxLength hard-cuts a long word
+ok 6 - hidden: maxLength hard-cuts a long word
+  ---
+  duration_ms: 0.051666
+  type: 'test'
+  ...
+# Subtest: hidden: maxLength cuts at the last separator
+ok 7 - hidden: maxLength cuts at the last separator
+  ---
+  duration_ms: 0.037959
+  type: 'test'
+  ...
+# Subtest: hidden: maxLength removes a trailing separator
+ok 8 - hidden: maxLength removes a trailing separator
+  ---
+  duration_ms: 0.037792
+  type: 'test'
+  ...
+# Subtest: hidden: maxLength of one
+ok 9 - hidden: maxLength of one
+  ---
+  duration_ms: 0.214417
+  type: 'test'
+  ...
+# Subtest: hidden: invalid separators throw TypeError
+ok 10 - hidden: invalid separators throw TypeError
+  ---
+  duration_ms: 0.361792
+  type: 'test'
+  ...
+# Subtest: hidden: invalid maxLength throws TypeError
+ok 11 - hidden: invalid maxLength throws TypeError
+  ---
+  duration_ms: 0.108
+  type: 'test'
+  ...
+# Subtest: hidden: mixed digits and diacritics
+ok 12 - hidden: mixed digits and diacritics
+  ---
+  duration_ms: 0.042
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 40.084625

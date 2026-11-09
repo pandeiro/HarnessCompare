@@ -1,0 +1,16 @@
+{
+  "name": "slugify",
+  "title": "slugify fix",
+  "start": "A small ESM package whose `src/slug.js` violates `SPEC.md`",
+  "visibleTest": "test/slug.test.js",
+  "hiddenTest": "slug.hidden.test.js",
+  "visibleTotal": 6,
+  "visibleFailures": 2,
+  "hiddenTotal": 12,
+  "related": [
+    {
+      "label": "Dependency planner task",
+      "href": "task2.md"
+    }
+  ]
+}

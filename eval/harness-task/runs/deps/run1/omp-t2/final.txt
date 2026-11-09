@@ -1,0 +1,8 @@
+Rewrote `src/plan.js` to fully implement SPEC.md:
+
+- **Validation** in spec order: `INVALID_TASKS`, `INVALID_TASK` (plain object, non-empty string `id`, with `index`), `DUPLICATE_ID` (`id`), `INVALID_DEPS` (`id`), `UNKNOWN_DEP` (`id`, `dependency`).
+- **Planning**: wave 0 = no deps, wave *n* = deps all in earlier waves; ids sorted per wave with default `.sort()` (UTF-16 code units); `order` = flattened waves; empty input → `{ waves: [], order: [] }`.
+- **CYCLE**: throws with `cycle` = sorted ids of every unplaced task, including downstream dependents.
+- Duplicate deps are deduped via `Set`; `PlanError` carries `name`, `code`, and the listed extra fields.
+
+`npm test`: **5/5 pass, 0 fail**. Also smoke-tested edge cases (empty input, duplicate deps, validation field payloads, cycle with a dependent, UTF-16 ordering) — all match the spec.

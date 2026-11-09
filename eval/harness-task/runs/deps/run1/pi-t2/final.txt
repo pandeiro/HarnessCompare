@@ -1,0 +1,9 @@
+Implemented `buildPlan` in `src/plan.js` per SPEC.md:
+
+- Added full input validation with `PlanError` codes: `INVALID_TASKS`, `INVALID_TASK`, `DUPLICATE_ID`, `INVALID_DEPS`, `UNKNOWN_DEP`, and `CYCLE`.
+- Added required error details (`index`, `id`, `dependency`, `cycle`).
+- Deduplicated dependencies and computed execution waves correctly, sorting IDs within each wave.
+- Added cycle reporting for all unplaceable tasks, including dependents.
+- Handles empty input as `{ waves: [], order: [] }`.
+
+`npm test`: **5 passed, 0 failed**.

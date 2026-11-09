@@ -1,0 +1,12 @@
+[submodule "code/opencode"]
+	path = code/opencode
+	url = https://github.com/anomalyco/opencode.git
+	branch = dev
+[submodule "code/pi"]
+	path = code/pi
+	url = https://github.com/earendil-works/pi.git
+	branch = main
+[submodule "code/oh-my-pi"]
+	path = code/oh-my-pi
+	url = https://github.com/can1357/oh-my-pi.git
+	branch = main

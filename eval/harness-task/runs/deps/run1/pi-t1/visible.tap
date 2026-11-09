@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: builds a chain
+ok 1 - builds a chain
+  ---
+  duration_ms: 0.612666
+  type: 'test'
+  ...
+# Subtest: groups a diamond into waves
+ok 2 - groups a diamond into waves
+  ---
+  duration_ms: 0.218
+  type: 'test'
+  ...
+# Subtest: sorts ids inside a wave
+ok 3 - sorts ids inside a wave
+  ---
+  duration_ms: 0.059667
+  type: 'test'
+  ...
+# Subtest: rejects duplicate ids
+ok 4 - rejects duplicate ids
+  ---
+  duration_ms: 0.477834
+  type: 'test'
+  ...
+# Subtest: rejects cycles
+ok 5 - rejects cycles
+  ---
+  duration_ms: 0.117
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 37.342667

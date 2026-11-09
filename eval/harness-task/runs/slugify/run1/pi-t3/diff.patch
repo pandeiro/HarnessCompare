@@ -1,0 +1,77 @@
+diff --git a/src/slug.js b/src/slug.js
+index 1b5c76f..ee2bd2a 100644
+--- a/src/slug.js
++++ b/src/slug.js
+@@ -1,13 +1,66 @@
++function escapeRegExp(value) {
++  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
++}
++
+ export function slugify(input, options = {}) {
+-  const separator = options.separator ?? "-";
++  const opts = options ?? {};
++  const separator = opts.separator === undefined ? "-" : opts.separator;
++
++  if (typeof separator !== "string" || separator.length === 0) {
++    throw new TypeError("options.separator must be a non-empty string");
++  }
++
++  let maxLength;
++  if (opts.maxLength !== undefined) {
++    maxLength = opts.maxLength;
++    if (!Number.isInteger(maxLength) || maxLength <= 0) {
++      throw new TypeError("options.maxLength must be a positive integer");
++    }
++  }
++
++  const escapedSeparator = escapeRegExp(separator);
++
+   let slug = String(input)
++    .normalize("NFKD")
++    .replace(/\p{M}+/gu, "")
+     .toLowerCase()
+-    .trim()
+-    .replace(/[^a-z0-9]+/g, separator)
+-    .replace(new RegExp(`^${separator}+|${separator}+$`, "g"), "");
++    .replace(/[^\p{L}\p{N}]+/gu, separator);
++
++  // Collapse repeated separators and trim them from both ends.
++  slug = slug
++    .replace(new RegExp(`${escapedSeparator}+`, "g"), separator)
++    .replace(new RegExp(`^(?:${escapedSeparator})+|(?:${escapedSeparator})+$`, "g"), "");
++
++  if (slug === "") {
++    return "";
++  }
++
++  if (maxLength !== undefined && slug.length > maxLength) {
++    const end = maxLength;
++
++    if (slug.startsWith(separator, end)) {
++      // The limit falls exactly at a word boundary.
++      slug = slug.slice(0, end);
++    } else {
++      // Cut at the last separator before the limit when one exists after
++      // position 0; otherwise hard-cut inside the current word.
++      let cut = -1;
++      let index = slug.indexOf(separator);
++
++      while (index !== -1 && index < end) {
++        if (index > 0) {
++          cut = index;
++        }
++        index = slug.indexOf(separator, index + 1);
++      }
++
++      slug = cut > 0 ? slug.slice(0, cut) : slug.slice(0, end);
++    }
+ 
+-  if (options.maxLength && slug.length > options.maxLength) {
+-    slug = slug.slice(0, options.maxLength);
++    // Remove a trailing separator left by the truncation.
++    while (slug.endsWith(separator)) {
++      slug = slug.slice(0, -separator.length);
++    }
+   }
+ 
+   return slug;

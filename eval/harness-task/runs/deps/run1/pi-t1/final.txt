@@ -1,0 +1,8 @@
+Implemented `buildPlan` in `src/plan.js` per `SPEC.md`:
+
+- Validates task lists, task shape, IDs, dependencies, duplicate IDs, and unknown dependencies with the specified `PlanError` codes/fields.
+- Builds correctly sorted execution waves using only earlier-wave dependencies.
+- Handles duplicate dependency names, empty inputs, and reports unplaceable tasks (including cycle dependents) in `cycle`.
+- Preserves `PlanError` as an `Error` subclass.
+
+Test result: `npm test` passes all 5 tests.

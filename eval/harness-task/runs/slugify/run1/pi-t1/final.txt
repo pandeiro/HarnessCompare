@@ -1,0 +1,10 @@
+Updated `src/slug.js` to fully implement `SPEC.md`:
+
+- NFKD normalization and combining-mark removal before lowercasing
+- Unicode-aware preservation of `\p{L}` and `\p{N}`
+- Configurable separator handling, including collapsing/trimming
+- Positive-integer `maxLength` truncation with word-boundary cuts
+- `TypeError` validation for invalid `separator` and `maxLength`
+- Empty/no-alphanumeric input returns `""`
+
+Test result: `npm test` — **6/6 passing**.

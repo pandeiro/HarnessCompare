@@ -1,0 +1,10 @@
+Updated `src/slug.js` to match `SPEC.md`:
+
+- Unicode NFKD normalization and combining-mark removal
+- Unicode letter/number support
+- Separator validation with `TypeError`
+- Positive-integer `maxLength` validation with `TypeError`
+- Separator collapsing/trimming with regex-safe custom separators
+- Word-boundary-aware truncation
+
+Test result: `npm test` passes **6/6** tests.

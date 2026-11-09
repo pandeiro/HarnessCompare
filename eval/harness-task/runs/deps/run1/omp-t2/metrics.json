@@ -1,0 +1,94 @@
+{
+  "task": "deps",
+  "harness": "omp",
+  "trial": 2,
+  "id": "omp-t2",
+  "startedAt": "2026-11-09T15:46:21.141Z",
+  "model": "opencode-go/deepseek-v4.1-flash",
+  "command": "omp -p --mode json --model opencode-go/deepseek-v4.1-flash --api-key <key> --no-session --auto-approve --no-extensions --no-skills --no-context-files --no-rules --no-lsp --max-time 10m <prompt>",
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "durationMs": 38122.5,
+  "stdoutBytes": 327746,
+  "stderrBytes": 0,
+  "eventCount": 893,
+  "malformedEventLines": 0,
+  "modelsReported": [
+    "deepseek-v4.1-flash"
+  ],
+  "providersReported": [
+    "opencode-go"
+  ],
+  "usage": {
+    "input": 14271,
+    "output": 2810,
+    "reasoning": 983,
+    "cacheRead": 57216,
+    "cacheWrite": 0,
+    "total": 74297
+  },
+  "costUsd": 0.003998,
+  "turns": 7,
+  "steps": 7,
+  "toolCalls": {
+    "read": 4,
+    "glob": 1,
+    "write": 1,
+    "bash": 2
+  },
+  "toolCallCount": 8,
+  "testInvocations": 8,
+  "errors": [],
+  "diff": {
+    "changedFiles": 1,
+    "insertions": 93,
+    "deletions": 7,
+    "files": [
+      {
+        "status": "M",
+        "path": "src/plan.js"
+      }
+    ],
+    "forbidden": []
+  },
+  "visible": {
+    "passed": 5,
+    "failed": 0,
+    "passedNames": [
+      "builds a chain",
+      "groups a diamond into waves",
+      "sorts ids inside a wave",
+      "rejects duplicate ids",
+      "rejects cycles"
+    ],
+    "failedNames": [],
+    "exitCode": 0,
+    "timedOut": false
+  },
+  "hidden": {
+    "passed": 15,
+    "failed": 0,
+    "passedNames": [
+      "hidden: empty task list",
+      "hidden: single independent task",
+      "hidden: long chain",
+      "hidden: wave membership on a mixed graph",
+      "hidden: ids sort by code unit, not locale",
+      "hidden: duplicate ids report the id",
+      "hidden: unknown dependency reports task and dependency",
+      "hidden: self dependency is a cycle",
+      "hidden: cycle includes blocked dependents",
+      "hidden: duplicate dependency names are deduped",
+      "hidden: missing deps property means no dependencies",
+      "hidden: invalid tasks",
+      "hidden: invalid deps",
+      "hidden: no mutation of the input",
+      "hidden: complex graph is complete and consistent"
+    ],
+    "failedNames": [],
+    "exitCode": 0,
+    "timedOut": false
+  },
+  "fullSolve": true
+}

@@ -1,0 +1,10 @@
+**Change (`src/slug.js`)** — rewrote `slugify` to match SPEC.md:
+
+- NFKD normalize + strip `\p{M}` combining marks, then lowercase.
+- Split on `[^\p{L}\p{N}]+` and rejoin with the separator, so Unicode letters/numbers are preserved and separator handling is regex-escape-safe (no regex interpolation).
+- `maxLength` truncation: slice, back off to the last separator occurrence when it exists after position 0, then drop any trailing separator.
+- Validation: `separator` defaults to `"-"` only when `undefined`; non-string/empty → `TypeError`. `maxLength` when provided must be a positive integer → otherwise `TypeError`.
+
+The entry point is complete and end-to-end: all rules, including the four examples, the Unicode/empty-input cases, multi-character separators, and both `TypeError` contracts, verified via an ad-hoc script.
+
+**Test result:** `npm test` → 6/6 pass, 0 fail. Ad-hoc spec checks also pass.

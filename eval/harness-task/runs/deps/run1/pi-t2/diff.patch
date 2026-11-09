@@ -1,0 +1,130 @@
+diff --git a/src/plan.js b/src/plan.js
+index 997e0ad..d0f68fa 100644
+--- a/src/plan.js
++++ b/src/plan.js
+@@ -1,21 +1,118 @@
+ export class PlanError extends Error {
+-  constructor(code, message) {
++  constructor(code, message, details = {}) {
+     super(message);
+     this.name = "PlanError";
+     this.code = code;
++    Object.assign(this, details);
+   }
+ }
+ 
++function isPlainObject(value) {
++  if (typeof value !== "object" || value === null || Array.isArray(value)) {
++    return false;
++  }
++  const proto = Object.getPrototypeOf(value);
++  return proto === Object.prototype || proto === null;
++}
++
++function compareIds(a, b) {
++  return a < b ? -1 : a > b ? 1 : 0;
++}
++
+ export function buildPlan(tasks) {
++  if (!Array.isArray(tasks)) {
++    throw new PlanError("INVALID_TASKS", "tasks must be an array");
++  }
++
++  const ids = new Set();
++
++  // Validate task shape and collect ids before checking dependencies.
++  for (let index = 0; index < tasks.length; index++) {
++    const task = tasks[index];
++    if (
++      !isPlainObject(task) ||
++      typeof task.id !== "string" ||
++      task.id.length === 0
++    ) {
++      throw new PlanError(
++        "INVALID_TASK",
++        `task at index ${index} must be a plain object with a non-empty string id`,
++        { index },
++      );
++    }
++    if (ids.has(task.id)) {
++      throw new PlanError(
++        "DUPLICATE_ID",
++        `duplicate task id: ${task.id}`,
++        { id: task.id },
++      );
++    }
++    ids.add(task.id);
++  }
++
++  // Normalize dependencies, rejecting malformed dependency lists and unknown ids.
++  const depsById = new Map();
++  for (const task of tasks) {
++    const deps = task.deps;
++    if (deps === undefined) {
++      depsById.set(task.id, new Set());
++      continue;
++    }
++    if (!Array.isArray(deps)) {
++      throw new PlanError(
++        "INVALID_DEPS",
++        `deps for task ${task.id} must be an array of non-empty strings`,
++        { id: task.id },
++      );
++    }
++
++    const normalized = new Set();
++    for (const dep of deps) {
++      if (typeof dep !== "string" || dep.length === 0) {
++        throw new PlanError(
++          "INVALID_DEPS",
++          `deps for task ${task.id} must be an array of non-empty strings`,
++          { id: task.id },
++        );
++      }
++      if (!ids.has(dep)) {
++        throw new PlanError(
++          "UNKNOWN_DEP",
++          `task ${task.id} depends on unknown task ${dep}`,
++          { id: task.id, dependency: dep },
++        );
++      }
++      normalized.add(dep);
++    }
++    depsById.set(task.id, normalized);
++  }
++
+   const waves = [];
+-  let remaining = tasks.slice();
++  const placed = new Set();
++  let remaining = tasks.map((task) => task.id);
+ 
+   while (remaining.length > 0) {
+-    const done = new Set(waves.flat());
+-    const wave = remaining.filter((task) => (task.deps ?? []).every((dep) => done.has(dep)));
+-    if (wave.length === 0) break;
+-    waves.push(wave.map((task) => task.id));
+-    remaining = remaining.filter((task) => !wave.includes(task));
++    const wave = remaining.filter((id) => {
++      for (const dep of depsById.get(id)) {
++        if (!placed.has(dep)) return false;
++      }
++      return true;
++    });
++
++    if (wave.length === 0) {
++      throw new PlanError(
++        "CYCLE",
++        "dependency graph contains a cycle",
++        { cycle: remaining.slice().sort(compareIds) },
++      );
++    }
++
++    wave.sort(compareIds);
++    waves.push(wave);
++    for (const id of wave) placed.add(id);
++
++    const waveIds = new Set(wave);
++    remaining = remaining.filter((id) => !waveIds.has(id));
+   }
+ 
+   return { waves, order: waves.flat() };

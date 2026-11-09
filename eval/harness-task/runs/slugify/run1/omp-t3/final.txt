@@ -1,0 +1,10 @@
+Fixed `src/slug.js`.
+
+**Changes**
+- NFKD normalize then strip combining marks (`\p{M}`) — diacritics now fold (`Café` → `cafe`).
+- Unicode-aware replacement: keep `\p{L}`/`\p{N}`, so non-Latin scripts survive (`東京 Station` → `東京-station`).
+- Separator regex escaped; collapse/trim now work for multi-char or regex-special separators (previously `new RegExp(separator)` could throw or misbehave).
+- Validation: `TypeError` for non-string/empty separator and for `maxLength` that isn't a positive integer (including `0`, fractional, `null`).
+- `maxLength` truncation now cuts at the last separator after position 0, hard-cuts otherwise, and removes a trailing separator left by the cut (previously raw `slice`).
+
+**Result:** `npm test` — 6/6 pass. Spec examples verified directly, including `alpha beta gamma` + `{maxLength: 12}` → `alpha-beta`, `abcdefghij` + `{maxLength: 5}` → `abcde`, and empty/no-alphanumeric input → `""`.

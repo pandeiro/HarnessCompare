@@ -1,0 +1,9 @@
+Implemented the full specification in `src/plan.js`:
+
+- Added task validation with `INVALID_TASKS`, `INVALID_TASK`, and `DUPLICATE_ID` errors.
+- Added dependency validation (`INVALID_DEPS`) and unknown-dependency detection (`UNKNOWN_DEP`).
+- Deduplicated dependencies, computed waves from earliest to latest, sorted IDs within each wave, and generated the flattened `order`.
+- Added cycle detection reporting all unplaceable tasks in the sorted `cycle` field.
+- Extended `PlanError` to carry the required extra fields.
+
+`npm test` passes all 5 tests (5 passed, 0 failed).

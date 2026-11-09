@@ -1,0 +1,100 @@
+TAP version 13
+# Subtest: hidden: empty task list
+ok 1 - hidden: empty task list
+  ---
+  duration_ms: 1.176208
+  type: 'test'
+  ...
+# Subtest: hidden: single independent task
+ok 2 - hidden: single independent task
+  ---
+  duration_ms: 0.172584
+  type: 'test'
+  ...
+# Subtest: hidden: long chain
+ok 3 - hidden: long chain
+  ---
+  duration_ms: 0.164833
+  type: 'test'
+  ...
+# Subtest: hidden: wave membership on a mixed graph
+ok 4 - hidden: wave membership on a mixed graph
+  ---
+  duration_ms: 0.165167
+  type: 'test'
+  ...
+# Subtest: hidden: ids sort by code unit, not locale
+ok 5 - hidden: ids sort by code unit, not locale
+  ---
+  duration_ms: 0.07025
+  type: 'test'
+  ...
+# Subtest: hidden: duplicate ids report the id
+ok 6 - hidden: duplicate ids report the id
+  ---
+  duration_ms: 0.187458
+  type: 'test'
+  ...
+# Subtest: hidden: unknown dependency reports task and dependency
+ok 7 - hidden: unknown dependency reports task and dependency
+  ---
+  duration_ms: 0.112292
+  type: 'test'
+  ...
+# Subtest: hidden: self dependency is a cycle
+ok 8 - hidden: self dependency is a cycle
+  ---
+  duration_ms: 0.057875
+  type: 'test'
+  ...
+# Subtest: hidden: cycle includes blocked dependents
+ok 9 - hidden: cycle includes blocked dependents
+  ---
+  duration_ms: 0.249208
+  type: 'test'
+  ...
+# Subtest: hidden: duplicate dependency names are deduped
+ok 10 - hidden: duplicate dependency names are deduped
+  ---
+  duration_ms: 0.26075
+  type: 'test'
+  ...
+# Subtest: hidden: missing deps property means no dependencies
+ok 11 - hidden: missing deps property means no dependencies
+  ---
+  duration_ms: 0.083334
+  type: 'test'
+  ...
+# Subtest: hidden: invalid tasks
+ok 12 - hidden: invalid tasks
+  ---
+  duration_ms: 0.151667
+  type: 'test'
+  ...
+# Subtest: hidden: invalid deps
+ok 13 - hidden: invalid deps
+  ---
+  duration_ms: 0.067125
+  type: 'test'
+  ...
+# Subtest: hidden: no mutation of the input
+ok 14 - hidden: no mutation of the input
+  ---
+  duration_ms: 0.036334
+  type: 'test'
+  ...
+# Subtest: hidden: complex graph is complete and consistent
+ok 15 - hidden: complex graph is complete and consistent
+  ---
+  duration_ms: 0.107625
+  type: 'test'
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 46.330042

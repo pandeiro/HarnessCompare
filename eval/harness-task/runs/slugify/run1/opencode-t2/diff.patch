@@ -1,0 +1,49 @@
+diff --git a/src/slug.js b/src/slug.js
+index 1b5c76f..b84ebe2 100644
+--- a/src/slug.js
++++ b/src/slug.js
+@@ -1,13 +1,38 @@
+ export function slugify(input, options = {}) {
+-  const separator = options.separator ?? "-";
++  const separator = options.separator === undefined ? "-" : options.separator;
++  if (typeof separator !== "string" || separator.length === 0) {
++    throw new TypeError("separator must be a non-empty string");
++  }
++
++  const maxLength = options.maxLength;
++  if (
++    maxLength !== undefined &&
++    (!Number.isInteger(maxLength) || maxLength <= 0)
++  ) {
++    throw new TypeError("maxLength must be a positive integer");
++  }
++
+   let slug = String(input)
++    .normalize("NFKD")
++    .replace(/\p{M}+/gu, "")
+     .toLowerCase()
+-    .trim()
+-    .replace(/[^a-z0-9]+/g, separator)
+-    .replace(new RegExp(`^${separator}+|${separator}+$`, "g"), "");
++    .replace(/[^\p{L}\p{N}]+/gu, separator);
++
++  slug = slug.split(separator).filter(Boolean).join(separator);
+ 
+-  if (options.maxLength && slug.length > options.maxLength) {
+-    slug = slug.slice(0, options.maxLength);
++  if (maxLength !== undefined) {
++    const chars = Array.from(slug);
++    if (chars.length > maxLength) {
++      let cut = chars.slice(0, maxLength).join("");
++      const lastSeparator = cut.lastIndexOf(separator);
++      if (lastSeparator > 0) {
++        cut = cut.slice(0, lastSeparator);
++      }
++      while (cut.endsWith(separator)) {
++        cut = cut.slice(0, -separator.length);
++      }
++      slug = cut;
++    }
+   }
+ 
+   return slug;

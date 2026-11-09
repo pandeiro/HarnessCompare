@@ -1,0 +1,113 @@
+diff --git a/src/plan.js b/src/plan.js
+index 997e0ad..f2de708 100644
+--- a/src/plan.js
++++ b/src/plan.js
+@@ -1,21 +1,99 @@
+ export class PlanError extends Error {
+-  constructor(code, message) {
++  constructor(code, message, fields = {}) {
+     super(message);
+     this.name = "PlanError";
+     this.code = code;
++    Object.assign(this, fields);
+   }
+ }
+ 
++function isPlainObject(value) {
++  if (typeof value !== "object" || value === null || Array.isArray(value)) {
++    return false;
++  }
++  const proto = Object.getPrototypeOf(value);
++  return proto === Object.prototype || proto === null;
++}
++
++function isNonEmptyString(value) {
++  return typeof value === "string" && value.length > 0;
++}
++
++function validate(tasks) {
++  if (!Array.isArray(tasks)) {
++    throw new PlanError("INVALID_TASKS", "tasks must be an array");
++  }
++
++  const seen = new Set();
++  const depsById = new Map();
++
++  for (let index = 0; index < tasks.length; index++) {
++    const task = tasks[index];
++
++    if (!isPlainObject(task) || !isNonEmptyString(task.id)) {
++      throw new PlanError("INVALID_TASK", `task at index ${index} must be a plain object with a non-empty string id`, { index });
++    }
++
++    const { id, deps } = task;
++
++    if (seen.has(id)) {
++      throw new PlanError("DUPLICATE_ID", `duplicate task id "${id}"`, { id });
++    }
++    seen.add(id);
++
++    if (deps !== undefined) {
++      if (!Array.isArray(deps) || !deps.every(isNonEmptyString)) {
++        throw new PlanError("INVALID_DEPS", `deps for task "${id}" must be an array of non-empty strings`, { id });
++      }
++      depsById.set(id, new Set(deps));
++    } else {
++      depsById.set(id, new Set());
++    }
++  }
++
++  for (const [id, deps] of depsById) {
++    for (const dependency of deps) {
++      if (!seen.has(dependency)) {
++        throw new PlanError("UNKNOWN_DEP", `task "${id}" depends on unknown task "${dependency}"`, { id, dependency });
++      }
++    }
++  }
++
++  return depsById;
++}
++
+ export function buildPlan(tasks) {
++  const depsById = validate(tasks);
++
+   const waves = [];
+-  let remaining = tasks.slice();
+-
+-  while (remaining.length > 0) {
+-    const done = new Set(waves.flat());
+-    const wave = remaining.filter((task) => (task.deps ?? []).every((dep) => done.has(dep)));
+-    if (wave.length === 0) break;
+-    waves.push(wave.map((task) => task.id));
+-    remaining = remaining.filter((task) => !wave.includes(task));
++  const placed = new Set();
++  const remaining = new Set(depsById.keys());
++
++  while (remaining.size > 0) {
++    const wave = [];
++    for (const id of remaining) {
++      const deps = depsById.get(id);
++      let ready = true;
++      for (const dep of deps) {
++        if (!placed.has(dep)) {
++          ready = false;
++          break;
++        }
++      }
++      if (ready) wave.push(id);
++    }
++
++    if (wave.length === 0) {
++      const cycle = [...remaining].sort();
++      throw new PlanError("CYCLE", `cannot order tasks: ${cycle.join(", ")}`, { cycle });
++    }
++
++    wave.sort();
++    waves.push(wave);
++    for (const id of wave) {
++      remaining.delete(id);
++      placed.add(id);
++    }
+   }
+ 
+   return { waves, order: waves.flat() };

@@ -1,0 +1,9 @@
+Rewrote `src/plan.js` to match SPEC.md:
+
+- Added full input validation with `PlanError` codes: `INVALID_TASKS`, `INVALID_TASK` (`index`), `DUPLICATE_ID` (`id`), `INVALID_DEPS` (`id`), `UNKNOWN_DEP` (`id`, `dependency`).
+- Plain-object and non-empty-string checks; duplicate deps collapsed via `Set`.
+- Kahn-style wave construction; ids sorted per wave (default UTF-16 sort), `order` flattened.
+- Unplaceable tasks (cycles plus dependents) now throw `CYCLE` with sorted `cycle` list instead of silently returning partial waves.
+- `buildPlan([])` returns `{ waves: [], order: [] }`.
+
+Verification: `npm test` — 5/5 passing. Additional edge-case checks confirmed every error code, duplicate-dep handling, empty input, and cycle-with-dependents behavior.

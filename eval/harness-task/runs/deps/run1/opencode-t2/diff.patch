@@ -1,0 +1,96 @@
+diff --git a/src/plan.js b/src/plan.js
+index 997e0ad..094b3cc 100644
+--- a/src/plan.js
++++ b/src/plan.js
+@@ -1,21 +1,85 @@
+ export class PlanError extends Error {
+-  constructor(code, message) {
++  constructor(code, message, fields = {}) {
+     super(message);
+     this.name = "PlanError";
+     this.code = code;
++    Object.assign(this, fields);
+   }
+ }
+ 
++function isPlainObject(value) {
++  if (value === null || typeof value !== "object") return false;
++  if (Array.isArray(value)) return false;
++  const proto = Object.getPrototypeOf(value);
++  return proto === Object.prototype || proto === null;
++}
++
++function isNonEmptyString(value) {
++  return typeof value === "string" && value.length > 0;
++}
++
+ export function buildPlan(tasks) {
++  if (!Array.isArray(tasks)) {
++    throw new PlanError("INVALID_TASKS", "tasks must be an array");
++  }
++
++  const byId = new Map();
++
++  for (let index = 0; index < tasks.length; index++) {
++    const task = tasks[index];
++    if (!isPlainObject(task) || !isNonEmptyString(task.id)) {
++      throw new PlanError("INVALID_TASK", "task must be a plain object with a non-empty string id", {
++        index,
++      });
++    }
++
++    const deps = task.deps;
++    if (deps !== undefined) {
++      if (!Array.isArray(deps) || !deps.every(isNonEmptyString)) {
++        throw new PlanError("INVALID_DEPS", "deps must be an array of non-empty strings", {
++          id: task.id,
++        });
++      }
++    }
++
++    if (byId.has(task.id)) {
++      throw new PlanError("DUPLICATE_ID", `duplicate task id: ${task.id}`, { id: task.id });
++    }
++
++    byId.set(task.id, new Set(deps === undefined ? [] : deps));
++  }
++
++  for (const [id, deps] of byId) {
++    for (const dependency of deps) {
++      if (!byId.has(dependency)) {
++        throw new PlanError("UNKNOWN_DEP", `unknown dependency: ${dependency}`, {
++          id,
++          dependency,
++        });
++      }
++    }
++  }
++
+   const waves = [];
+-  let remaining = tasks.slice();
++  const placed = new Set();
++  let remaining = [...byId.keys()];
+ 
+   while (remaining.length > 0) {
+-    const done = new Set(waves.flat());
+-    const wave = remaining.filter((task) => (task.deps ?? []).every((dep) => done.has(dep)));
++    const wave = remaining.filter((id) =>
++      [...byId.get(id)].every((dep) => placed.has(dep)),
++    );
+     if (wave.length === 0) break;
+-    waves.push(wave.map((task) => task.id));
+-    remaining = remaining.filter((task) => !wave.includes(task));
++    wave.sort();
++    waves.push(wave);
++    for (const id of wave) placed.add(id);
++    const waveSet = new Set(wave);
++    remaining = remaining.filter((id) => !waveSet.has(id));
++  }
++
++  if (remaining.length > 0) {
++    throw new PlanError("CYCLE", "dependency graph contains a cycle", {
++      cycle: [...remaining].sort(),
++    });
+   }
+ 
+   return { waves, order: waves.flat() };

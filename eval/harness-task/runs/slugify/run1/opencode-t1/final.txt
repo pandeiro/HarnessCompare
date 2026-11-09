@@ -1,0 +1,3 @@
+I'll start by reading the spec and the current implementation.Implemented `slugify` per SPEC.md: NFKD normalization + combining-mark removal, Unicode letter/number filtering, separator validation, collapse/trim, and word-boundary-aware `maxLength` truncation with `TypeError` validation.
+
+Test result: **6/6 passing** (`npm test`).

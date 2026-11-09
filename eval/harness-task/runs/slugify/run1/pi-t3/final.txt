@@ -1,0 +1,10 @@
+Updated `src/slug.js` to implement all SPEC.md rules:
+
+- Unicode NFKD normalization, combining-mark removal, and lowercasing.
+- Unicode letter/number preservation with escaped custom separators.
+- Separator collapsing and trimming, including multi-character/special-character separators.
+- Proper `maxLength` truncation at word boundaries with hard-cut fallback.
+- `TypeError` validation for invalid `separator` and `maxLength`.
+- Empty/no-letter-or-number inputs return `""`.
+
+Test result: `npm test` — **6 passed, 0 failed**.

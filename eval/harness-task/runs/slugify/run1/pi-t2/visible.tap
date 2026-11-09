@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: basic words and punctuation
+ok 1 - basic words and punctuation
+  ---
+  duration_ms: 0.846042
+  type: 'test'
+  ...
+# Subtest: collapses separators and trims
+ok 2 - collapses separators and trims
+  ---
+  duration_ms: 0.136541
+  type: 'test'
+  ...
+# Subtest: custom separator
+ok 3 - custom separator
+  ---
+  duration_ms: 0.071041
+  type: 'test'
+  ...
+# Subtest: removes diacritics
+ok 4 - removes diacritics
+  ---
+  duration_ms: 0.533584
+  type: 'test'
+  ...
+# Subtest: maxLength cuts at a word boundary
+ok 5 - maxLength cuts at a word boundary
+  ---
+  duration_ms: 0.327084
+  type: 'test'
+  ...
+# Subtest: empty input
+ok 6 - empty input
+  ---
+  duration_ms: 0.041417
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 41.077041

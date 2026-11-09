@@ -1,0 +1,87 @@
+{
+  "task": "deps",
+  "harness": "opencode",
+  "trial": 1,
+  "id": "opencode-t1",
+  "startedAt": "2026-11-09T15:43:48.556Z",
+  "model": "opencode-go/deepseek-v4.1-flash",
+  "command": "opencode run --format json --pure --model opencode-go/deepseek-v4.1-flash --auto --dir /var/folders/38/txwkwdps54d04z3jlxvksl000000gn/T/harness-task/deps/run1/opencode-t1/workspace --title eval-workspace <prompt>",
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "durationMs": 10370.1,
+  "stdoutBytes": 22241,
+  "stderrBytes": 0,
+  "eventCount": 12,
+  "malformedEventLines": 0,
+  "modelsReported": [],
+  "providersReported": [],
+  "usage": {
+    "input": 9951,
+    "output": 859,
+    "reasoning": 179,
+    "cacheRead": 31104,
+    "cacheWrite": 0,
+    "total": 42093
+  },
+  "costUsd": 0.002209,
+  "turns": 4,
+  "steps": 4,
+  "toolCalls": {
+    "bash": 3
+  },
+  "toolCallCount": 3,
+  "testInvocations": 1,
+  "errors": [],
+  "diff": {
+    "changedFiles": 1,
+    "insertions": 82,
+    "deletions": 5,
+    "files": [
+      {
+        "status": "M",
+        "path": "src/plan.js"
+      }
+    ],
+    "forbidden": []
+  },
+  "visible": {
+    "passed": 5,
+    "failed": 0,
+    "passedNames": [
+      "builds a chain",
+      "groups a diamond into waves",
+      "sorts ids inside a wave",
+      "rejects duplicate ids",
+      "rejects cycles"
+    ],
+    "failedNames": [],
+    "exitCode": 0,
+    "timedOut": false
+  },
+  "hidden": {
+    "passed": 15,
+    "failed": 0,
+    "passedNames": [
+      "hidden: empty task list",
+      "hidden: single independent task",
+      "hidden: long chain",
+      "hidden: wave membership on a mixed graph",
+      "hidden: ids sort by code unit, not locale",
+      "hidden: duplicate ids report the id",
+      "hidden: unknown dependency reports task and dependency",
+      "hidden: self dependency is a cycle",
+      "hidden: cycle includes blocked dependents",
+      "hidden: duplicate dependency names are deduped",
+      "hidden: missing deps property means no dependencies",
+      "hidden: invalid tasks",
+      "hidden: invalid deps",
+      "hidden: no mutation of the input",
+      "hidden: complex graph is complete and consistent"
+    ],
+    "failedNames": [],
+    "exitCode": 0,
+    "timedOut": false
+  },
+  "fullSolve": true
+}

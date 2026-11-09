@@ -1,0 +1,810 @@
+[
+  {
+    "harness": "opencode",
+    "trial": 1,
+    "id": "opencode-t1",
+    "startedAt": "2026-11-09T15:30:55.991Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "opencode run --format json --pure --model opencode-go/deepseek-v4.1-flash --auto --dir /var/folders/38/txwkwdps54d04z3jlxvksl000000gn/T/harness-task/run1/opencode-t1/workspace --title eval-workspace <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 27445.5,
+    "stdoutBytes": 23789,
+    "stderrBytes": 0,
+    "eventCount": 22,
+    "malformedEventLines": 0,
+    "modelsReported": [],
+    "providersReported": [],
+    "usage": {
+      "input": 11595,
+      "output": 1196,
+      "reasoning": 1467,
+      "cacheRead": 56064,
+      "cacheWrite": 0,
+      "total": 70322
+    },
+    "costUsd": 0.003505,
+    "turns": 6,
+    "steps": 6,
+    "toolCalls": {
+      "read": 4,
+      "bash": 3,
+      "write": 1
+    },
+    "toolCallCount": 8,
+    "testInvocations": 1,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 35,
+      "deletions": 9,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/slug.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 6,
+      "failed": 0,
+      "passedNames": [
+        "basic words and punctuation",
+        "collapses separators and trims",
+        "custom separator",
+        "removes diacritics",
+        "maxLength cuts at a word boundary",
+        "empty input"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 12,
+      "failed": 0,
+      "passedNames": [
+        "hidden: diacritics are transliterated",
+        "hidden: non-Latin letters are preserved",
+        "hidden: punctuation and underscores collapse",
+        "hidden: custom separator with regex metacharacter",
+        "hidden: empty and separator-only inputs",
+        "hidden: maxLength hard-cuts a long word",
+        "hidden: maxLength cuts at the last separator",
+        "hidden: maxLength removes a trailing separator",
+        "hidden: maxLength of one",
+        "hidden: invalid separators throw TypeError",
+        "hidden: invalid maxLength throws TypeError",
+        "hidden: mixed digits and diacritics"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true,
+    "task": "slugify"
+  },
+  {
+    "harness": "opencode",
+    "trial": 2,
+    "id": "opencode-t2",
+    "startedAt": "2026-11-09T15:31:23.644Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "opencode run --format json --pure --model opencode-go/deepseek-v4.1-flash --auto --dir /var/folders/38/txwkwdps54d04z3jlxvksl000000gn/T/harness-task/run1/opencode-t2/workspace --title eval-workspace <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 22212.5,
+    "stdoutBytes": 21520,
+    "stderrBytes": 0,
+    "eventCount": 20,
+    "malformedEventLines": 0,
+    "modelsReported": [],
+    "providersReported": [],
+    "usage": {
+      "input": 11357,
+      "output": 902,
+      "reasoning": 1597,
+      "cacheRead": 55552,
+      "cacheWrite": 0,
+      "total": 69408
+    },
+    "costUsd": 0.00337,
+    "turns": 6,
+    "steps": 6,
+    "toolCalls": {
+      "read": 2,
+      "bash": 4,
+      "write": 1
+    },
+    "toolCallCount": 7,
+    "testInvocations": 1,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 31,
+      "deletions": 6,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/slug.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 6,
+      "failed": 0,
+      "passedNames": [
+        "basic words and punctuation",
+        "collapses separators and trims",
+        "custom separator",
+        "removes diacritics",
+        "maxLength cuts at a word boundary",
+        "empty input"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 12,
+      "failed": 0,
+      "passedNames": [
+        "hidden: diacritics are transliterated",
+        "hidden: non-Latin letters are preserved",
+        "hidden: punctuation and underscores collapse",
+        "hidden: custom separator with regex metacharacter",
+        "hidden: empty and separator-only inputs",
+        "hidden: maxLength hard-cuts a long word",
+        "hidden: maxLength cuts at the last separator",
+        "hidden: maxLength removes a trailing separator",
+        "hidden: maxLength of one",
+        "hidden: invalid separators throw TypeError",
+        "hidden: invalid maxLength throws TypeError",
+        "hidden: mixed digits and diacritics"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true,
+    "task": "slugify"
+  },
+  {
+    "harness": "opencode",
+    "trial": 3,
+    "id": "opencode-t3",
+    "startedAt": "2026-11-09T15:31:46.062Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "opencode run --format json --pure --model opencode-go/deepseek-v4.1-flash --auto --dir /var/folders/38/txwkwdps54d04z3jlxvksl000000gn/T/harness-task/run1/opencode-t3/workspace --title eval-workspace <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 21144.3,
+    "stdoutBytes": 15801,
+    "stderrBytes": 0,
+    "eventCount": 15,
+    "malformedEventLines": 0,
+    "modelsReported": [],
+    "providersReported": [],
+    "usage": {
+      "input": 17480,
+      "output": 585,
+      "reasoning": 449,
+      "cacheRead": 32768,
+      "cacheWrite": 0,
+      "total": 51282
+    },
+    "costUsd": 0.003341,
+    "turns": 5,
+    "steps": 5,
+    "toolCalls": {
+      "bash": 3,
+      "write": 1
+    },
+    "toolCallCount": 4,
+    "testInvocations": 1,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 35,
+      "deletions": 8,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/slug.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 6,
+      "failed": 0,
+      "passedNames": [
+        "basic words and punctuation",
+        "collapses separators and trims",
+        "custom separator",
+        "removes diacritics",
+        "maxLength cuts at a word boundary",
+        "empty input"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 12,
+      "failed": 0,
+      "passedNames": [
+        "hidden: diacritics are transliterated",
+        "hidden: non-Latin letters are preserved",
+        "hidden: punctuation and underscores collapse",
+        "hidden: custom separator with regex metacharacter",
+        "hidden: empty and separator-only inputs",
+        "hidden: maxLength hard-cuts a long word",
+        "hidden: maxLength cuts at the last separator",
+        "hidden: maxLength removes a trailing separator",
+        "hidden: maxLength of one",
+        "hidden: invalid separators throw TypeError",
+        "hidden: invalid maxLength throws TypeError",
+        "hidden: mixed digits and diacritics"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true,
+    "task": "slugify"
+  },
+  {
+    "harness": "pi",
+    "trial": 1,
+    "id": "pi-t1",
+    "startedAt": "2026-11-09T15:32:07.410Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "pi -p --mode json --model opencode-go/deepseek-v4.1-flash --api-key <key> --no-session --no-context-files --no-extensions --no-skills --no-prompt-templates --no-themes <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 23718.5,
+    "stdoutBytes": 535093,
+    "stderrBytes": 430,
+    "eventCount": 1630,
+    "malformedEventLines": 0,
+    "modelsReported": [
+      "deepseek-v4.1-flash"
+    ],
+    "providersReported": [
+      "opencode-go"
+    ],
+    "usage": {
+      "input": 6457,
+      "output": 3238,
+      "reasoning": 2201,
+      "cacheRead": 9728,
+      "cacheWrite": 0,
+      "total": 19423
+    },
+    "costUsd": 0.002941,
+    "turns": 4,
+    "steps": 4,
+    "toolCalls": {
+      "bash": 4,
+      "write": 1
+    },
+    "toolCallCount": 5,
+    "testInvocations": 4,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 32,
+      "deletions": 8,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/slug.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 6,
+      "failed": 0,
+      "passedNames": [
+        "basic words and punctuation",
+        "collapses separators and trims",
+        "custom separator",
+        "removes diacritics",
+        "maxLength cuts at a word boundary",
+        "empty input"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 12,
+      "failed": 0,
+      "passedNames": [
+        "hidden: diacritics are transliterated",
+        "hidden: non-Latin letters are preserved",
+        "hidden: punctuation and underscores collapse",
+        "hidden: custom separator with regex metacharacter",
+        "hidden: empty and separator-only inputs",
+        "hidden: maxLength hard-cuts a long word",
+        "hidden: maxLength cuts at the last separator",
+        "hidden: maxLength removes a trailing separator",
+        "hidden: maxLength of one",
+        "hidden: invalid separators throw TypeError",
+        "hidden: invalid maxLength throws TypeError",
+        "hidden: mixed digits and diacritics"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true,
+    "task": "slugify"
+  },
+  {
+    "harness": "pi",
+    "trial": 2,
+    "id": "pi-t2",
+    "startedAt": "2026-11-09T15:32:31.357Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "pi -p --mode json --model opencode-go/deepseek-v4.1-flash --api-key <key> --no-session --no-context-files --no-extensions --no-skills --no-prompt-templates --no-themes <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 67621.2,
+    "stdoutBytes": 834855,
+    "stderrBytes": 430,
+    "eventCount": 2357,
+    "malformedEventLines": 0,
+    "modelsReported": [
+      "deepseek-v4.1-flash"
+    ],
+    "providersReported": [
+      "opencode-go"
+    ],
+    "usage": {
+      "input": 9228,
+      "output": 7745,
+      "reasoning": 6031,
+      "cacheRead": 31488,
+      "cacheWrite": 0,
+      "total": 48461
+    },
+    "costUsd": 0.006126,
+    "turns": 8,
+    "steps": 8,
+    "toolCalls": {
+      "bash": 6,
+      "write": 1,
+      "edit": 1
+    },
+    "toolCallCount": 8,
+    "testInvocations": 8,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 48,
+      "deletions": 6,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/slug.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 6,
+      "failed": 0,
+      "passedNames": [
+        "basic words and punctuation",
+        "collapses separators and trims",
+        "custom separator",
+        "removes diacritics",
+        "maxLength cuts at a word boundary",
+        "empty input"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 12,
+      "failed": 0,
+      "passedNames": [
+        "hidden: diacritics are transliterated",
+        "hidden: non-Latin letters are preserved",
+        "hidden: punctuation and underscores collapse",
+        "hidden: custom separator with regex metacharacter",
+        "hidden: empty and separator-only inputs",
+        "hidden: maxLength hard-cuts a long word",
+        "hidden: maxLength cuts at the last separator",
+        "hidden: maxLength removes a trailing separator",
+        "hidden: maxLength of one",
+        "hidden: invalid separators throw TypeError",
+        "hidden: invalid maxLength throws TypeError",
+        "hidden: mixed digits and diacritics"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true,
+    "task": "slugify"
+  },
+  {
+    "harness": "pi",
+    "trial": 3,
+    "id": "pi-t3",
+    "startedAt": "2026-11-09T15:33:39.216Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "pi -p --mode json --model opencode-go/deepseek-v4.1-flash --api-key <key> --no-session --no-context-files --no-extensions --no-skills --no-prompt-templates --no-themes <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 41666.8,
+    "stdoutBytes": 849201,
+    "stderrBytes": 430,
+    "eventCount": 2669,
+    "malformedEventLines": 0,
+    "modelsReported": [
+      "deepseek-v4.1-flash"
+    ],
+    "providersReported": [
+      "opencode-go"
+    ],
+    "usage": {
+      "input": 8747,
+      "output": 5521,
+      "reasoning": 4160,
+      "cacheRead": 18944,
+      "cacheWrite": 0,
+      "total": 33212
+    },
+    "costUsd": 0.004681,
+    "turns": 6,
+    "steps": 6,
+    "toolCalls": {
+      "bash": 6,
+      "write": 1
+    },
+    "toolCallCount": 7,
+    "testInvocations": 4,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 59,
+      "deletions": 6,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/slug.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 6,
+      "failed": 0,
+      "passedNames": [
+        "basic words and punctuation",
+        "collapses separators and trims",
+        "custom separator",
+        "removes diacritics",
+        "maxLength cuts at a word boundary",
+        "empty input"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 12,
+      "failed": 0,
+      "passedNames": [
+        "hidden: diacritics are transliterated",
+        "hidden: non-Latin letters are preserved",
+        "hidden: punctuation and underscores collapse",
+        "hidden: custom separator with regex metacharacter",
+        "hidden: empty and separator-only inputs",
+        "hidden: maxLength hard-cuts a long word",
+        "hidden: maxLength cuts at the last separator",
+        "hidden: maxLength removes a trailing separator",
+        "hidden: maxLength of one",
+        "hidden: invalid separators throw TypeError",
+        "hidden: invalid maxLength throws TypeError",
+        "hidden: mixed digits and diacritics"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true,
+    "task": "slugify"
+  },
+  {
+    "harness": "omp",
+    "trial": 1,
+    "id": "omp-t1",
+    "startedAt": "2026-11-09T15:34:21.114Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "omp -p --mode json --model opencode-go/deepseek-v4.1-flash --api-key <key> --no-session --auto-approve --no-extensions --no-skills --no-context-files --no-rules --no-lsp --max-time 10m <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 70895.6,
+    "stdoutBytes": 569293,
+    "stderrBytes": 0,
+    "eventCount": 924,
+    "malformedEventLines": 0,
+    "modelsReported": [
+      "deepseek-v4.1-flash"
+    ],
+    "providersReported": [
+      "opencode-go"
+    ],
+    "usage": {
+      "input": 9844,
+      "output": 5200,
+      "reasoning": 2843,
+      "cacheRead": 93312,
+      "cacheWrite": 0,
+      "total": 108356
+    },
+    "costUsd": 0.004877,
+    "turns": 9,
+    "steps": 9,
+    "toolCalls": {
+      "read": 3,
+      "bash": 5,
+      "write": 1,
+      "edit": 1
+    },
+    "toolCallCount": 10,
+    "testInvocations": 15,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 30,
+      "deletions": 6,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/slug.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 6,
+      "failed": 0,
+      "passedNames": [
+        "basic words and punctuation",
+        "collapses separators and trims",
+        "custom separator",
+        "removes diacritics",
+        "maxLength cuts at a word boundary",
+        "empty input"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 12,
+      "failed": 0,
+      "passedNames": [
+        "hidden: diacritics are transliterated",
+        "hidden: non-Latin letters are preserved",
+        "hidden: punctuation and underscores collapse",
+        "hidden: custom separator with regex metacharacter",
+        "hidden: empty and separator-only inputs",
+        "hidden: maxLength hard-cuts a long word",
+        "hidden: maxLength cuts at the last separator",
+        "hidden: maxLength removes a trailing separator",
+        "hidden: maxLength of one",
+        "hidden: invalid separators throw TypeError",
+        "hidden: invalid maxLength throws TypeError",
+        "hidden: mixed digits and diacritics"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true,
+    "task": "slugify"
+  },
+  {
+    "harness": "omp",
+    "trial": 2,
+    "id": "omp-t2",
+    "startedAt": "2026-11-09T15:35:32.252Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "omp -p --mode json --model opencode-go/deepseek-v4.1-flash --api-key <key> --no-session --auto-approve --no-extensions --no-skills --no-context-files --no-rules --no-lsp --max-time 10m <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 37334.3,
+    "stdoutBytes": 564096,
+    "stderrBytes": 0,
+    "eventCount": 1153,
+    "malformedEventLines": 0,
+    "modelsReported": [
+      "deepseek-v4.1-flash"
+    ],
+    "providersReported": [
+      "opencode-go"
+    ],
+    "usage": {
+      "input": 13651,
+      "output": 4118,
+      "reasoning": 1515,
+      "cacheRead": 71936,
+      "cacheWrite": 0,
+      "total": 89705
+    },
+    "costUsd": 0.004734,
+    "turns": 8,
+    "steps": 8,
+    "toolCalls": {
+      "read": 4,
+      "glob": 1,
+      "write": 1,
+      "bash": 3,
+      "edit": 1
+    },
+    "toolCallCount": 10,
+    "testInvocations": 14,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 27,
+      "deletions": 7,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/slug.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 6,
+      "failed": 0,
+      "passedNames": [
+        "basic words and punctuation",
+        "collapses separators and trims",
+        "custom separator",
+        "removes diacritics",
+        "maxLength cuts at a word boundary",
+        "empty input"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 12,
+      "failed": 0,
+      "passedNames": [
+        "hidden: diacritics are transliterated",
+        "hidden: non-Latin letters are preserved",
+        "hidden: punctuation and underscores collapse",
+        "hidden: custom separator with regex metacharacter",
+        "hidden: empty and separator-only inputs",
+        "hidden: maxLength hard-cuts a long word",
+        "hidden: maxLength cuts at the last separator",
+        "hidden: maxLength removes a trailing separator",
+        "hidden: maxLength of one",
+        "hidden: invalid separators throw TypeError",
+        "hidden: invalid maxLength throws TypeError",
+        "hidden: mixed digits and diacritics"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true,
+    "task": "slugify"
+  },
+  {
+    "harness": "omp",
+    "trial": 3,
+    "id": "omp-t3",
+    "startedAt": "2026-11-09T15:36:09.809Z",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "command": "omp -p --mode json --model opencode-go/deepseek-v4.1-flash --api-key <key> --no-session --auto-approve --no-extensions --no-skills --no-context-files --no-rules --no-lsp --max-time 10m <prompt>",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationMs": 27367.3,
+    "stdoutBytes": 313278,
+    "stderrBytes": 0,
+    "eventCount": 1471,
+    "malformedEventLines": 0,
+    "modelsReported": [
+      "deepseek-v4.1-flash"
+    ],
+    "providersReported": [
+      "opencode-go"
+    ],
+    "usage": {
+      "input": 11576,
+      "output": 2441,
+      "reasoning": 1142,
+      "cacheRead": 36608,
+      "cacheWrite": 0,
+      "total": 50625
+    },
+    "costUsd": 0.003311,
+    "turns": 5,
+    "steps": 5,
+    "toolCalls": {
+      "read": 5,
+      "write": 1,
+      "bash": 1,
+      "eval": 1
+    },
+    "toolCallCount": 8,
+    "testInvocations": 8,
+    "errors": [],
+    "diff": {
+      "changedFiles": 1,
+      "insertions": 29,
+      "deletions": 5,
+      "files": [
+        {
+          "status": "M",
+          "path": "src/slug.js"
+        }
+      ],
+      "forbidden": []
+    },
+    "visible": {
+      "passed": 6,
+      "failed": 0,
+      "passedNames": [
+        "basic words and punctuation",
+        "collapses separators and trims",
+        "custom separator",
+        "removes diacritics",
+        "maxLength cuts at a word boundary",
+        "empty input"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "hidden": {
+      "passed": 12,
+      "failed": 0,
+      "passedNames": [
+        "hidden: diacritics are transliterated",
+        "hidden: non-Latin letters are preserved",
+        "hidden: punctuation and underscores collapse",
+        "hidden: custom separator with regex metacharacter",
+        "hidden: empty and separator-only inputs",
+        "hidden: maxLength hard-cuts a long word",
+        "hidden: maxLength cuts at the last separator",
+        "hidden: maxLength removes a trailing separator",
+        "hidden: maxLength of one",
+        "hidden: invalid separators throw TypeError",
+        "hidden: invalid maxLength throws TypeError",
+        "hidden: mixed digits and diacritics"
+      ],
+      "failedNames": [],
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "fullSolve": true,
+    "task": "slugify"
+  }
+]

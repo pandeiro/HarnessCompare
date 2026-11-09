@@ -1,0 +1,3 @@
+Implemented the full spec in `src/plan.js`: input validation with all six `PlanError` codes, plain-object/id/deps checks, duplicate and unknown dependency detection, sorted wave assignment, flattened `order`, and cycle reporting with the sorted set of unplaced tasks.
+
+All 5 tests pass.
