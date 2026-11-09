@@ -6,6 +6,89 @@ This is a static implementation comparison at the commits below. No benchmarks w
 
 Repository layout: the harness trees are git submodules under `code/`. Paths in this document are relative to each harness root, so `opencode/packages/...` means `code/opencode/packages/...`, and likewise for `pi/` and `oh-my-pi/`.
 
+## Agentic loop at a glance
+
+All three harnesses run the same high-level loop: assemble context, stream a model response, execute the requested tools, append the results, and continue until the model stops asking for tools. The differences are in where that loop lives, how tool calls are scheduled, and what makes a turn durable.
+
+The diagrams are simplified; the sections below cite the exact implementation files.
+
+### opencode: client/server, event-sourced
+
+```mermaid
+flowchart TD
+  C["TUI / web / desktop / SDK"] -->|"HTTP + SSE"| S["opencode server"]
+  S --> D["SessionRunner.drain<br/>one turn = one inbox drain"]
+  D --> X["SessionContext.load<br/>instructions + tools + history"]
+  X --> M["SessionStep<br/>model request + stream"]
+  M -->|"tool calls"| T["Tool fibers<br/>permission → execute → truncate"]
+  T --> E["Session events<br/>projector → SQLite"]
+  E -->|"next step"| M
+  M -->|"no tool calls"| I["idle / queued input"]
+  I --> D
+  M -->|"overflow / length"| K["compaction or retry"]
+  K --> M
+  E -.->|"durable"| R["execution claim"]
+  R -.->|"restart"| D
+```
+
+The server owns the loop, tools, permissions, providers, and SQLite. The TUI and web/desktop clients only send requests and consume events. Each streamed tool call runs in its own Effect fiber, and a write-ahead execution claim makes an interrupted turn resumable.
+
+### pi: in-process, tree-shaped context
+
+```mermaid
+flowchart TD
+  C["TUI / print / JSON / RPC / SDK"] --> A["AgentSession"]
+  A --> R["Agent.runLoop<br/>run = submitted prompt"]
+  R --> T["turn loop"]
+  T --> X["buildSessionContext<br/>leaf → root, compaction, context_edit"]
+  X --> P["prepareRequest<br/>sectioned system prompt + declared tools"]
+  P --> L["provider stream"]
+  L -->|"tool calls"| B["tool batch<br/>Promise.all, sequential opt-out"]
+  B --> H["tool_call / tool_result<br/>extension hooks"]
+  H --> J["JSONL session tree<br/>entries with id / parentId"]
+  J -->|"next turn"| T
+  L -->|"stop"| G["agent_settled<br/>queues and retries drained"]
+  G --> I["idle"]
+  I --> R
+  X -->|"over threshold"| K["compaction<br/>summary + firstKeptEntryId"]
+  K --> P
+```
+
+Everything runs in one process. Extensions are ordinary TypeScript loaded in-process and can replace built-ins. The transcript is an append-only tree, and model context is a projection of the active branch; tool calls are scheduled with `Promise.all` unless a tool opts into sequential execution.
+
+### oh-my-pi: native tools, worker-thread subagents
+
+```mermaid
+flowchart TD
+  C["TUI / print / RPC / ACP / collab"] --> A["omp host<br/>AgentSession"]
+  A --> R["Agent.runLoop<br/>run → turns"]
+  R --> T["turn loop"]
+  T --> X["buildSessionContext<br/>branch + project-context footer"]
+  X --> P["provider stream<br/>per-model tool dialect"]
+  P -->|"tool calls"| B["tool batch<br/>approval tiers → execute"]
+  B --> N["native Rust tools<br/>shell, grep, edit, LSP/DAP"]
+  B --> D["JS tools<br/>bash, task, xd:// devices"]
+  N --> J["JSONL session tree<br/>entries + blobs"]
+  D --> J
+  D -->|"task"| W["subagent worker threads<br/>child sessions + typed results"]
+  W --> J
+  J -->|"next turn"| T
+  P -->|"stop"| G["agent settled"]
+  G --> I["idle"]
+  I --> R
+  X -->|"context pressure"| K["compaction / shake / snapcompact"]
+  K --> P
+```
+
+oh-my-pi keeps pi's single-host model but moves search, shell, AST edits, VCS, and diffing into an in-process Rust addon. Subagents are child sessions on pooled worker threads rather than separate CLI processes, and the tool surface includes `xd://` devices that are invoked through `read`/`write`.
+
+### What the diagrams make obvious
+
+- **State ownership**: only opencode separates the loop from its clients. pi and oh-my-pi run the loop in the CLI process.
+- **Durability**: opencode's loop is backed by an event-sourced database and a resumable execution claim; pi and oh-my-pi replay an append-only JSONL tree.
+- **Tool scheduling**: opencode forks a fiber per tool call; pi uses a promise batch with an opt-out; oh-my-pi batches native and JS tools and can hand work to worker-thread subagents.
+- **Compaction**: all three loop back through a reduced context, but opencode can precompute a summary in the background, pi appends a compaction entry, and oh-my-pi can choose LLM compaction, mechanical shake, or snapcompact.
+
 ## Snapshot
 
 | | opencode | pi | oh-my-pi (`omp`) |
